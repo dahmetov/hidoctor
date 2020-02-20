@@ -7,8 +7,11 @@ is_hidden = 0
 slug = "{{ :slug }}"
 categoryPage = "clinic/category"
 
-[commentsPost]
+[openingHours]
+slug = "{{ :slug }}"
 ==
 {% set post = blogPost.post %}
 
 {% partial 'clinic/details' %}
+
+{% component 'openingHours' %}

@@ -1,6 +1,8 @@
 <?php namespace RainLab\Blog\Models;
 
 use Db;
+use RainLab\Blog\Classes\DateUtils;
+use Spatie\OpeningHours\OpeningHours;
 use Url;
 use App;
 use Str;
@@ -23,6 +25,7 @@ use ValidationException;
 class Post extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use DateUtils;
 
     public $table = 'rainlab_blog_posts';
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
@@ -91,6 +94,11 @@ class Post extends Model
         ]
     ];
 
+    public $hasMany = [
+        'hours'      => Hour::class,
+        'exceptions' => DateException::class,
+    ];
+
     public $attachMany = [
         'featured_images' => ['System\Models\File', 'order' => 'sort_order'],
         'content_images'  => ['System\Models\File']
@@ -102,6 +110,60 @@ class Post extends Model
     protected $appends = ['summary', 'has_summary'];
 
     public $preview = null;
+
+    /**
+     * @var OpeningHours
+     */
+    public $openingHours;
+
+    /**
+     * Create an OpeningHours instance from the available data.
+     */
+    protected function afterFetch()
+    {
+        $data = $this->opening_hours_data;
+        if (is_array($data) && OpeningHours::isValid($data)) {
+            try {
+                $this->openingHours = OpeningHours::create($data);
+            } catch (\Throwable $e) {
+                logger()->error(sprintf('Failed to initialize OpeningHours class: %s', $e->getMessage()), [$e]);
+            }
+        }
+    }
+
+    /**
+     * Return the data in the required format for spatie/opening-hours.
+     *
+     * @return array
+     */
+    public function getOpeningHoursDataAttribute()
+    {
+        $weekdays = self::getWeekdays();
+        $values   = $this->hours->mapWithKeys(function ($day) use ($weekdays) {
+            $key    = $weekdays[$day->weekday] ?? $day->weekday;
+            $values = self::toTimeRange($day->hours);
+            if ($day->note !== '') {
+                $values['data'] = $day->note;
+            }
+
+            return [$key => $values];
+        })->filter();
+
+        $values['exceptions'] = $this->exceptions->mapWithKeys(function ($exception) {
+            $format = $exception->yearly ? 'm-d' : 'Y-m-d';
+            $key    = $exception->for_date->format($format);
+            $values = self::toTimeRange($exception->hours);
+            if ($exception->note !== '') {
+                $values['data'] = $exception->note;
+            }
+
+            return [$key => $values];
+        });
+
+        $values['overflow'] = true;
+
+        return $values->toArray();
+    }
 
     /**
      * Limit visibility of the published-button

@@ -60,6 +60,7 @@ return [
         'tab_edit' => 'Edit',
         'tab_additional' => 'Additional info',
         'tab_categories' => 'Categories',
+        'tab_hours' => 'Opening hours',
         'categories_comment' => 'Select categories the blog post belongs to',
         'categories_placeholder' => 'There are no categories, you should create one first!',
         'tab_manage' => 'Manage',

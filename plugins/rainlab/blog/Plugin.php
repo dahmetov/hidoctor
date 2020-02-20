@@ -28,6 +28,7 @@ class Plugin extends PluginBase
             'RainLab\Blog\Components\Posts'      => 'blogPosts',
             'RainLab\Blog\Components\Categories' => 'blogCategories',
             'RainLab\Blog\Components\Clinic' => 'clinic',
+            'RainLab\Blog\Components\OpeningHours' => 'openingHours',
             'RainLab\Blog\Components\RssFeed'    => 'blogRssFeed'
         ];
     }

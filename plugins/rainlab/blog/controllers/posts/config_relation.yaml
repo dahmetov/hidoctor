@@ -1,0 +1,18 @@
+hours:
+    label: offline.openinghours::lang.common.hours_label
+    deferredBinding: true
+    view:
+        list: $/rainlab/blog/models/hour/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/rainlab/blog/models/hour/fields.yaml
+        recordsPerPage: 10
+exceptions:
+    label: offline.openinghours::lang.common.hours_special_label
+    deferredBinding: true
+    view:
+        list: $/rainlab/blog/models/dateexception/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/rainlab/blog/models/dateexception/fields.yaml
+        recordsPerPage: 10

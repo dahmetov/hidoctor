@@ -253,4 +253,9 @@
   'OFFLINE\\OpeningHours\\Models\\Location' => 'plugins/offline/openinghours/models/Location.php',
   'OFFLINE\\OpeningHours\\Models\\Hour' => 'plugins/offline/openinghours/models/Hour.php',
   'OFFLINE\\OpeningHours\\Models\\DateException' => 'plugins/offline/openinghours/models/DateException.php',
+  'RainLab\\Blog\\Classes\\DateUtils' => 'plugins/rainlab/blog/classes/DateUtils.php',
+  'RainLab\\Blog\\Models\\Hour' => 'plugins/rainlab/blog/models/Hour.php',
+  'RainLab\\Blog\\Models\\DateException' => 'plugins/rainlab/blog/models/DateException.php',
+  'RainLab\\Blog\\Components\\OpeningHours' => 'plugins/rainlab/blog/components/OpeningHours.php',
+  'RainLab\\Blog\\Classes\\DayRange' => 'plugins/rainlab/blog/classes/DayRange.php',
 );

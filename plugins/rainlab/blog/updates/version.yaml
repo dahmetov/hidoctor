@@ -58,3 +58,7 @@
 1.4.2:
     - Add clinic fields for posts
     - add_fields_for_clinics.php
+1.5.0:
+    - Add open ours
+    - create_rainlab_openinghours_exceptions.php
+    - create_rainlab_openinghours_hours.php

@@ -1,9 +1,12 @@
 <?php namespace RainLab\Blog\Controllers;
 
+use Backend\Behaviors\RelationController;
 use BackendMenu;
 use Flash;
 use Lang;
 use Backend\Classes\Controller;
+use October\Rain\Exception\ValidationException;
+use RainLab\Blog\Models\Hour;
 use RainLab\Blog\Models\Post;
 
 class Posts extends Controller
@@ -11,12 +14,14 @@ class Posts extends Controller
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController',
-        'Backend.Behaviors.ImportExportController'
+        'Backend.Behaviors.ImportExportController',
+        'Backend.Behaviors.RelationController',
     ];
 
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
     public $importExportConfig = 'config_import_export.yaml';
+    public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = ['rainlab.blog.access_other_posts', 'rainlab.blog.access_posts'];
 
@@ -130,5 +135,36 @@ class Posts extends Controller
         return [
             'preview' => $previewHtml
         ];
+    }
+
+    public function onRelationManageCreate()
+    {
+        $sessionKey = post('_session_key');
+        if (post('_relation_field') !== 'hours') {
+            return parent::onRelationManageCreate();
+        }
+
+        $this->initRelation(Post::find($this->params[0]), 'hours');
+        $this->prepareVars();
+
+        // Handle multi creation of opening hours.
+        $weekdays = post('Hour.weekdays', []);
+        if ( ! $weekdays) {
+            throw new ValidationException(['weekdays' => 'Select at least one weekday']);
+        }
+
+        $data = post('Hour');
+
+        foreach ($weekdays as $weekday) {
+            $newModel              = new Hour();
+            $newModel->weekday     = $weekday;
+            $newModel->hours       = $data['hours'] ?? [];
+            $newModel->note        = $data['note'] ?? [];
+            $newModel->post_id = $this->params[0];
+            $newModel->save(null, $sessionKey);
+        }
+
+
+        return $this->relationRefresh();
     }
 }

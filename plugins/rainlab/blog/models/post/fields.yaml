@@ -89,3 +89,19 @@ secondaryTabs:
             label: rainlab.blog::lang.post.is_verified
             span: left
             type: checkbox
+
+        hours:
+            tab: rainlab.blog::lang.post.tab_hours
+            type: partial
+            path: hours
+            context: update
+            span: left
+
+        exceptions:
+            tab: rainlab.blog::lang.post.tab_hours
+            type: partial
+            path: exceptions
+            context: update
+            span: right
+
+
