@@ -1,0 +1,19 @@
+title = "Список Клиник"
+url = "/clinic/category/:slug"
+layout = "noSidebar"
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "{{ :slug }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postPage = "details"
+==
+
+{% set posts = blogPosts.posts %}
+
+{% partial 'clinic/list' %}
+
+{% partial 'clinic/pagination' %}

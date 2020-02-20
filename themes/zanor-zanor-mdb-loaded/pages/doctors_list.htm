@@ -1,0 +1,20 @@
+title = "Список врачей"
+url = "/doctors/:page?"
+layout = "noSidebar"
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "doctors"
+postsPerPage = 10
+noPostsMessage = "Врачей не найдено"
+sortOrder = "published_at desc"
+categoryPage = "blog"
+postPage = "post"
+==
+
+{% set posts = blogPosts.posts %}
+
+{% partial 'doctor/list' %}
+
+{% partial 'clinic/pagination' %}

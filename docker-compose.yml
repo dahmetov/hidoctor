@@ -1,0 +1,15 @@
+version: "3"
+services:
+  db:
+    image: "mdillon/postgis"
+    container_name: "hi_doctor"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dbUser
+      - POSTGRES_PASSWORD=dbPassword
+      - POSTGRES_DB=doctor
+    volumes:
+      - my_dbdata:/var/lib/postgresql/data
+volumes:
+  my_dbdata:

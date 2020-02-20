@@ -1,0 +1,14 @@
+title = "Детальная страница клинники"
+url = "/details/:slug"
+layout = "noSidebar"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "clinic/category"
+
+[commentsPost]
+==
+{% set post = blogPost.post %}
+
+{% partial 'clinic/details' %}

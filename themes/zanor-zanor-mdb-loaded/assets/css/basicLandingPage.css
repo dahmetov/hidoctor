@@ -1,0 +1,43 @@
+.view {
+    height: 100%;
+}
+
+h4 {
+    color: #5171a5;
+}
+
+.main-search {
+    border: 1px solid #4285F4 !important;
+    padding: 10px !important;
+    width: 100% !important;
+    color: #fff !important;
+}
+
+.main-search::placeholder {
+    color: #fff;
+}
+
+
+.main-search:focus {
+    background: #fff;
+    color: #212529 !important;
+}
+
+
+@media only screen and (max-width: 667px) {
+    .display-3 {
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .navbar {
+        background-color: #1C2331;
+    }
+    .display-3 {
+        font-size: 2rem;
+        margin-top: 5rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}

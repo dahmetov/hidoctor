@@ -1,0 +1,12 @@
+title = "Список клиник по категориям"
+url = "/clinic/categories"
+layout = "noSidebar"
+is_hidden = 0
+
+[clinic]
+slug = "{{ :slug }}"
+displayEmpty = 1
+categoryPage = "clinics_list"
+postPage = "details"
+==
+{% component 'clinic' %}

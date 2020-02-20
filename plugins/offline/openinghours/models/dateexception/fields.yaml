@@ -1,0 +1,32 @@
+fields:
+    for_date:
+        label: 'offline.openinghours::lang.date.for'
+        mode: date
+        span: auto
+        type: datepicker
+    note:
+        label: 'offline.openinghours::lang.common.note'
+        span: auto
+        type: text
+    yearly:
+        label: 'offline.openinghours::lang.date.yearly_comment'
+        span: full
+        type: checkbox
+    hours:
+        label: 'offline.openinghours::lang.common.hours_special'
+        prompt: 'offline.openinghours::lang.common.add'
+        commentAbove: 'offline.openinghours::lang.exceptions.hours_comment'
+        span: full
+        type: repeater
+        form:
+            fields:
+                from:
+                    label: 'offline.openinghours::lang.hours.from'
+                    mode: time
+                    span: auto
+                    type: datepicker
+                to:
+                    label: 'offline.openinghours::lang.hours.to'
+                    mode: time
+                    span: auto
+                    type: datepicker
