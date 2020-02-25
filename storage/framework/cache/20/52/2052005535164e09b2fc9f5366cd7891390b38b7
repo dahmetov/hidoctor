@@ -1,0 +1,45 @@
+1582601046a:1:{s:12:"sideMenu.htm";a:8:{s:8:"fileName";s:12:"sideMenu.htm";s:7:"content";s:764:"description = "StaticPages SubMenu"
+
+[viewBag]
+
+[staticMenu]
+==
+<?php
+function onEnd()
+{
+    $this['parentPage'] = explode("/", substr($this->page->url,1));
+    $this['getMenu'] = $this['parentPage'][0];
+    $this['subMenu'] = ucwords(str_replace("-"," ",$this['getMenu']));
+}
+?>
+==
+{% set links = staticMenu.resetMenu( getMenu ) %}
+{% if staticMenu.menuItems %}
+    
+    <div class="widget-wrapper">
+        <h4 class="dark-grey-text">{{ subMenu|replace({'-': ' '}) }}</h4>
+        <div class="list-group">
+            {% for item in staticMenu.menuItems %}
+                <a href="{{ item.url }}" class="list-group-item {% if this.page.title == item.title %}active{% endif %}">{{ item.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endif %}";s:5:"mtime";i:1581752530;s:6:"markup";s:481:"{% set links = staticMenu.resetMenu( getMenu ) %}
+{% if staticMenu.menuItems %}
+    
+    <div class="widget-wrapper">
+        <h4 class="dark-grey-text">{{ subMenu|replace({'-': ' '}) }}</h4>
+        <div class="list-group">
+            {% for item in staticMenu.menuItems %}
+                <a href="{{ item.url }}" class="list-group-item {% if this.page.title == item.title %}active{% endif %}">{{ item.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endif %}";s:4:"code";s:206:"function onEnd()
+{
+    $this['parentPage'] = explode("/", substr($this->page->url,1));
+    $this['getMenu'] = $this['parentPage'][0];
+    $this['subMenu'] = ucwords(str_replace("-"," ",$this['getMenu']));
+}";s:11:"description";s:19:"StaticPages SubMenu";s:7:"viewBag";a:0:{}s:10:"staticMenu";a:0:{}}}

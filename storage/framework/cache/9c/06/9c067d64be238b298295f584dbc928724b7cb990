@@ -1,0 +1,53 @@
+1582601046a:1:{s:24:"site/scrollingNavbar.htm";a:8:{s:8:"fileName";s:24:"site/scrollingNavbar.htm";s:7:"content";s:874:"description = "Scrolling Nav with Dropdown"
+
+[viewBag]
+
+[staticMenu]
+code = "mainmenu"
+==
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">LOGO</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if staticMenu.menuItems %}
+            {% set items = staticMenu.menuItems %}
+        <!-- Links -->
+
+        {% endif %}
+        <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+";s:5:"mtime";i:1581762683;s:6:"markup";s:783:"<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">LOGO</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if staticMenu.menuItems %}
+            {% set items = staticMenu.menuItems %}
+        <!-- Links -->
+
+        {% endif %}
+        <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->";s:4:"code";N;s:11:"description";s:27:"Scrolling Nav with Dropdown";s:7:"viewBag";a:0:{}s:10:"staticMenu";a:1:{s:4:"code";s:8:"mainmenu";}}}

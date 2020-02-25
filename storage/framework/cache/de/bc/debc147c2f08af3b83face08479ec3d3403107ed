@@ -1,0 +1,59 @@
+1582601046a:1:{s:13:"site/head.htm";a:7:{s:8:"fileName";s:13:"site/head.htm";s:7:"content";s:1023:"description = "Head"
+
+[viewBag]
+==
+<html lang="en">
+<head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>{{ this.page.title }}</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/5.12.0/css/font-awesome.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        
+    <link href="{{ [
+        'assets/css/bootstrap.min.css',
+        'assets/css/mdb.min.css',
+        'assets/css/style.css',
+        'assets/css/addons/rating.min.css',
+        'assets/css/addons/star-rating-svg.css',
+        'assets/lightGallery/css/lightgallery.css',
+        'assets/lightGallery/css/lg-transitions.css',
+    ]|theme }}" rel="stylesheet">
+    
+    {% styles %}
+</head>
+<body>";s:5:"mtime";i:1582358392;s:6:"markup";s:988:"<html lang="en">
+<head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>{{ this.page.title }}</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/5.12.0/css/font-awesome.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        
+    <link href="{{ [
+        'assets/css/bootstrap.min.css',
+        'assets/css/mdb.min.css',
+        'assets/css/style.css',
+        'assets/css/addons/rating.min.css',
+        'assets/css/addons/star-rating-svg.css',
+        'assets/lightGallery/css/lightgallery.css',
+        'assets/lightGallery/css/lg-transitions.css',
+    ]|theme }}" rel="stylesheet">
+    
+    {% styles %}
+</head>
+<body>";s:4:"code";N;s:11:"description";s:4:"Head";s:7:"viewBag";a:0:{}}}

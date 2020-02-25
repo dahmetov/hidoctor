@@ -1,0 +1,12 @@
+1582601046a:1:{s:21:"clinic_categories.htm";a:10:{s:8:"fileName";s:21:"clinic_categories.htm";s:7:"content";s:250:"title = "Список клиник по категориям"
+url = "/clinic/categories"
+layout = "noSidebar"
+is_hidden = 0
+
+[clinic]
+slug = "{{ :slug }}"
+displayEmpty = 1
+categoryPage = "clinics_list"
+postPage = "details"
+==
+{% component 'clinic' %}";s:5:"mtime";i:1581872371;s:6:"markup";s:24:"{% component 'clinic' %}";s:4:"code";N;s:5:"title";s:51:"Список клиник по категориям";s:3:"url";s:18:"/clinic/categories";s:6:"layout";s:9:"noSidebar";s:9:"is_hidden";s:1:"0";s:6:"clinic";a:4:{s:4:"slug";s:11:"{{ :slug }}";s:12:"displayEmpty";s:1:"1";s:12:"categoryPage";s:12:"clinics_list";s:8:"postPage";s:7:"details";}}}
