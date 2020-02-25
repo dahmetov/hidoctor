@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/doctor</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="hidoctor@localhost" uuid="fff83fcb-07b6-4f8f-8f22-067616c3b55d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5434/hidoctor</jdbc-url>
+    </data-source>
   </component>
 </project>

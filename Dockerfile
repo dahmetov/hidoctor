@@ -4,12 +4,14 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
+    libpq-dev \
     ghostscript \
-    mysql-client libmagickwand-dev --no-install-recommends && \
+    libmagickwand-dev --no-install-recommends && \
     pecl install imagick && \
     docker-php-ext-enable imagick && \
-    docker-php-ext-install mcrypt pdo_mysql mbstring exif && \
+    docker-php-ext-install mcrypt pdo pdo_pgsql mbstring exif && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ &&\
+    docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql &&\
     docker-php-ext-install gd
 
 ENV DOCKERIZE_VERSION v0.6.1
@@ -34,7 +36,7 @@ WORKDIR /var/www/html
 COPY . .
 RUN composer install
 
-RUN chown www-data -R storage public/temp public/t public/export public/assets
+RUN chown www-data -R storage
 COPY entrypoint.sh /usr/local/bin/docker-php-entrypoint
 
 CMD [ "/usr/local/bin/apache2-foreground" ]
