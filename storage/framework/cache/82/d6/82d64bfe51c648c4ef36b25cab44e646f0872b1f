@@ -1,0 +1,87 @@
+1582601046a:1:{s:20:"doctor/list-item.htm";a:7:{s:8:"fileName";s:20:"doctor/list-item.htm";s:7:"content";s:2111:"description = "List of doctors"
+
+[viewBag]
+==
+<div class="row mt-5 wow fadeIn list-item" data-wow-delay="0.2s">
+    <!--Featured image-->
+    {% set image = post.featured_images.first %}
+    <div class="col-lg-4">
+        <div class="view overlay hm-white-light z-depth-1 rounded">
+            <img data-src="{{ image.filename }}" src="{{ image.path }}" class="img-fluid"
+                 alt="{{ image.description }}">
+            <a href="{{ post.url }}">
+                <div class="mask"></div>
+            </a>
+        </div>
+    </div>
+    <!--/.Featured image-->
+
+    <!--Post excerpt-->
+    <div class="col-lg-5 no-padding-right">
+        <a href="{{ post.url }}">
+            <h2 class="post-title font-bold">{{ post.title }}</h2>
+        </a>
+        <h6 class="dark-grey-text font-bold font-small">{{ post.published_at|date('M d, Y') }}</h6>
+        <p class="my-4 dark-grey-text">{{ post.summary|raw }}</p>
+        <div class="read-more">
+            <a href="{{ post.url }}" class="btn btn-primary btn-md">Read more</a>
+        </div>
+    </div>
+
+    <div class="col-lg-2 no-padding">
+        <div class="list-group list-group-flush" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+               role="tab" aria-controls="home">Понедельник</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+               role="tab" aria-controls="profile">Вторник</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+               role="tab" aria-controls="messages">Среда</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+               role="tab" aria-controls="settings">Четверг</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+               role="tab" aria-controls="settings">Пятница</a>
+        </div>
+    </div>
+    <!--/.Post excerpt-->
+</div>";s:5:"mtime";i:1582367759;s:6:"markup";s:2065:"<div class="row mt-5 wow fadeIn list-item" data-wow-delay="0.2s">
+    <!--Featured image-->
+    {% set image = post.featured_images.first %}
+    <div class="col-lg-4">
+        <div class="view overlay hm-white-light z-depth-1 rounded">
+            <img data-src="{{ image.filename }}" src="{{ image.path }}" class="img-fluid"
+                 alt="{{ image.description }}">
+            <a href="{{ post.url }}">
+                <div class="mask"></div>
+            </a>
+        </div>
+    </div>
+    <!--/.Featured image-->
+
+    <!--Post excerpt-->
+    <div class="col-lg-5 no-padding-right">
+        <a href="{{ post.url }}">
+            <h2 class="post-title font-bold">{{ post.title }}</h2>
+        </a>
+        <h6 class="dark-grey-text font-bold font-small">{{ post.published_at|date('M d, Y') }}</h6>
+        <p class="my-4 dark-grey-text">{{ post.summary|raw }}</p>
+        <div class="read-more">
+            <a href="{{ post.url }}" class="btn btn-primary btn-md">Read more</a>
+        </div>
+    </div>
+
+    <div class="col-lg-2 no-padding">
+        <div class="list-group list-group-flush" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+               role="tab" aria-controls="home">Понедельник</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+               role="tab" aria-controls="profile">Вторник</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+               role="tab" aria-controls="messages">Среда</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+               role="tab" aria-controls="settings">Четверг</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+               role="tab" aria-controls="settings">Пятница</a>
+        </div>
+    </div>
+    <!--/.Post excerpt-->
+</div>";s:4:"code";N;s:11:"description";s:15:"List of doctors";s:7:"viewBag";a:0:{}}}

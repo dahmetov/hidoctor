@@ -1,0 +1,139 @@
+1582601046a:1:{s:12:"site/nav.htm";a:8:{s:8:"fileName";s:12:"site/nav.htm";s:7:"content";s:2838:"description = "Nav with Dropdown"
+
+[viewBag]
+
+[categoryMenu]
+code = "mainmenu"
+categoryPage = "clinics_list"
+==
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color-dark">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Logo</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <!-- Collapsible content -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-google-plus-g"></i>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                 aria-labelledby="navbarDropdownMenuLink-333">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>
+    </ul>
+
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if categoryItems %}
+            {% set items = categoryItems %}
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                {% for item in items %}
+                    <li class="nav-item {% if this.page.title == item.title %} active {% endif %}">
+                        <a class="nav-link"
+                           href="{{ item.url }}">{{ item.name }} {% if this.page.title == item.title %} <span
+                                    class="sr-only">(current)</span> {% endif %}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->";s:5:"mtime";i:1582212854;s:6:"markup";s:2726:"<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color-dark">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Logo</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <!-- Collapsible content -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-google-plus-g"></i>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                 aria-labelledby="navbarDropdownMenuLink-333">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>
+    </ul>
+
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if categoryItems %}
+            {% set items = categoryItems %}
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                {% for item in items %}
+                    <li class="nav-item {% if this.page.title == item.title %} active {% endif %}">
+                        <a class="nav-link"
+                           href="{{ item.url }}">{{ item.name }} {% if this.page.title == item.title %} <span
+                                    class="sr-only">(current)</span> {% endif %}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->";s:4:"code";N;s:11:"description";s:17:"Nav with Dropdown";s:7:"viewBag";a:0:{}s:12:"categoryMenu";a:2:{s:4:"code";s:8:"mainmenu";s:12:"categoryPage";s:12:"clinics_list";}}}

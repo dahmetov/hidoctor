@@ -1,0 +1,10 @@
+1582601046a:1:{s:9:"index.htm";a:7:{s:8:"fileName";s:9:"index.htm";s:7:"content";s:434:"[viewBag]
+title = "Welcome"
+url = "/"
+layout = "basicLandingPage"
+is_hidden = 0
+navigation_hidden = 0
+tagline = "НАЙДИТЕ ПРОВЕРЕННОГО ВРАЧА И ЗАПИШИТЕСЬ НА ПРИЕМ"
+TagsList = "#головнаяболь #тошнота #кровьизноса"
+bgImage = "/cropped-images/02-Ways-to-Make-the-Most-of-Your-Doctors-Appointment_First-appointment_93813283_cyano66-295-832-1715-658-1581839670.jpg"
+==";s:5:"mtime";i:1581839828;s:6:"markup";s:0:"";s:4:"code";N;s:7:"viewBag";a:8:{s:5:"title";s:7:"Welcome";s:3:"url";s:1:"/";s:6:"layout";s:16:"basicLandingPage";s:9:"is_hidden";s:1:"0";s:17:"navigation_hidden";s:1:"0";s:7:"tagline";s:90:"НАЙДИТЕ ПРОВЕРЕННОГО ВРАЧА И ЗАПИШИТЕСЬ НА ПРИЕМ";s:8:"TagsList";s:65:"#головнаяболь #тошнота #кровьизноса";s:7:"bgImage";s:135:"/cropped-images/02-Ways-to-Make-the-Most-of-Your-Doctors-Appointment_First-appointment_93813283_cyano66-295-832-1715-658-1581839670.jpg";}s:12:"parsedMarkup";s:0:"";}}
