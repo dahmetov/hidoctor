@@ -20,10 +20,10 @@ class Tag extends Model
      * @var array Relations
      */
     public $belongsToMany = [
-        'posts' => [
-            'RainLab\Blog\Models\Post',
-            'table' => 'bedard_blogtags_post_tag',
-            'order' => 'published_at desc'
+        'specializations' => [
+            'RainLab\Blog\Models\Specialization',
+            'table' => 'bedard_blogtags_specialization_tag',
+            'order' => 'created_at desc'
         ]
     ];
 

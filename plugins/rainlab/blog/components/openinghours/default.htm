@@ -33,13 +33,9 @@
 {% endfor %}
 
 <div itemscope itemtype="http://schema.org/Store" class="location-opening-hours">
-    <h3>Opening hours</h3>
-
     {# This displays each day separately, if you need combined data (like Mo-Fr, Sa-So)  #}
     {# Check out the combined.htm partial of this component. #}
     {% partial __SELF__ ~ '::combined' post=__SELF__.post trans=trans %}
-
-    <h3>Special opening hours</h3>
 
     {% partial __SELF__ ~ '::exceptions' post=__SELF__.post trans=trans %}
 </div>

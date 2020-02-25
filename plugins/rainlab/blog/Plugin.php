@@ -48,6 +48,10 @@ class Plugin extends PluginBase
                 'tab'   => 'rainlab.blog::lang.blog.tab',
                 'label' => 'rainlab.blog::lang.blog.access_categories'
             ],
+            'rainlab.blog.access_specializations' => [
+                'tab'   => 'rainlab.blog::lang.blog.tab',
+                'label' => 'rainlab.blog::lang.blog.access_categories'
+            ],
             'rainlab.blog.access_other_posts' => [
                 'tab'   => 'rainlab.blog::lang.blog.tab',
                 'label' => 'rainlab.blog::lang.blog.access_other_posts'
@@ -92,6 +96,12 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-list-ul',
                         'url'         => Backend::url('rainlab/blog/categories'),
                         'permissions' => ['rainlab.blog.access_categories']
+                    ],
+                    'specializations' => [
+                        'label'       => 'rainlab.blog::lang.blog.specializations',
+                        'icon'        => 'icon-list-ul',
+                        'url'         => Backend::url('rainlab/blog/specializations'),
+                        'permissions' => ['rainlab.blog.access_specializations']
                     ]
                 ]
             ]

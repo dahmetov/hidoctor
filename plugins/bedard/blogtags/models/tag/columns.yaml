@@ -7,13 +7,13 @@ columns:
     name:
         label: Tag
 
-    posts:
-        label: Posts
+    specializations:
+        label: Specializations
         select: >
             (
                 select count(*)
-                from bedard_blogtags_post_tag
-                where bedard_blogtags_post_tag.tag_id = bedard_blogtags_tags.id
+                from bedard_blogtags_specialization_tag
+                where bedard_blogtags_specialization_tag.tag_id = bedard_blogtags_tags.id
             )
 
     created_at:

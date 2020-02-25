@@ -25,15 +25,15 @@ class CreateTagsTable extends Migration
                 $table->timestamps();
             });
 
-            Schema::create('bedard_blogtags_post_tag', function($table)
+            Schema::create('bedard_blogtags_specialization_tag', function($table)
             {
                 $this->dbSpecificSetup($table);
 
                 $table->integer('tag_id')->unsigned()->nullable()->default(null);
-                $table->integer('post_id')->unsigned()->nullable()->default(null);
-                $table->index(['tag_id', 'post_id']);
+                $table->integer('specialization_id')->unsigned()->nullable()->default(null);
+                $table->index(['tag_id', 'specialization_id']);
                 $table->foreign('tag_id')->references('id')->on('bedard_blogtags_tags')->onDelete('cascade');
-                $table->foreign('post_id')->references('id')->on('rainlab_blog_posts')->onDelete('cascade');
+                $table->foreign('specialization_id')->references('id')->on('rainlab_blog_specializations')->onDelete('cascade');
             });
         }
     }
@@ -42,7 +42,7 @@ class CreateTagsTable extends Migration
     {
         if(PluginManager::instance()->hasPlugin('RainLab.Blog'))
         {
-            Schema::dropIfExists('bedard_blogtags_post_tag');
+            Schema::dropIfExists('bedard_blogtags_specialization_tag');
             Schema::dropIfExists('bedard_blogtags_tags');
         }
     }

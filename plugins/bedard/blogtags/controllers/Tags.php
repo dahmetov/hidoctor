@@ -50,7 +50,7 @@ class Tags extends Controller
      */
     public function index_onRemoveOrphanedTags()
     {
-        if (!$delete = Tag::has('posts', 0)->delete())
+        if (!$delete = Tag::has('specializations', 0)->delete())
             return Flash::error('An unknown error has occured.');
 
         Flash::success('Successfully deleted orphaned tags.');

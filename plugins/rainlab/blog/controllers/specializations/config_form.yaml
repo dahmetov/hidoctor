@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: rainlab.blog::lang.blog.create_specialization
+form: ~/plugins/rainlab/blog/models/specialization/fields.yaml
+modelClass: RainLab\Blog\Models\Specialization
+defaultRedirect: rainlab/blog/specializations
+
+create:
+    redirect: rainlab/blog/specializations/update/:id
+    redirectClose: rainlab/blog/specializations
+
+update:
+    redirect: rainlab/blog/specializations
+    redirectClose: rainlab/blog/specializations

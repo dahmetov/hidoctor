@@ -6,8 +6,7 @@ fields:
     name:
         label: Tag
 
-    posts:
-        label: Posts
+    specializations:
+        label: Specializations
         type: relation
-        nameFrom: title
-        emptyOption: No posts available.
+        emptyOption: No specializations available.

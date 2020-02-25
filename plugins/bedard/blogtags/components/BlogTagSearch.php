@@ -4,6 +4,7 @@ use Cms\Classes\Page;
 use Bedard\BlogTags\Models\Tag;
 use Cms\Classes\ComponentBase;
 use Rainlab\Blog\Models\Post;
+use RainLab\Blog\Models\Specialization;
 
 class BlogTagSearch extends ComponentBase
 {
@@ -12,6 +13,11 @@ class BlogTagSearch extends ComponentBase
      * @var Bedard\BlogTags\Models\Tag
      */
     public $tag;
+
+    /**
+     * @var Bedard\BlogTags\Models\Tag
+     */
+    public $tags;
 
     /**
      * @var Illuminate\Database\Eloquent\Collection | array
@@ -150,24 +156,32 @@ class BlogTagSearch extends ComponentBase
         $this->calculatePagination();
 
         // Query the tag with it's posts
-        $this->tag = Tag::where('name', $this->property('tag'))
-            ->orWhere('slug', $this->property('tag'))
-            ->with(['posts' => function($posts) {
-                $posts->skip($this->resultsPerPage * ($this->currentPage - 1))
-                      ->take($this->resultsPerPage);
-            }])
-            ->first();
+        $this->tags = Tag::where('name', 'ILIKE', '%'.$this->property('tag').'%')
+            ->orWhere('slug', 'ILIKE', '%'.$this->property('tag').'%')
+            ->with(['specializations' => function($specializations) {
+                $specializations->with(['posts' => function($posts) {
+                    $posts->skip($this->resultsPerPage * ($this->currentPage - 1))
+                        ->take($this->resultsPerPage);
+                }]);
+            }])->get();
 
         // Store the posts in a better container
-        if(empty($this->tag)) {
+        if(empty($this->tags)) {
             $this->posts = null;
             $this->postsOnPage = 0;
         } else {
-            $this->posts = $this->tag->posts;
+            foreach ($this->tags as $tag) {
+                foreach ($tag->specializations as $specialization) {
+                    foreach ($specialization->posts as $post) {
+                        array_push($this->posts, $post);
+                    }
+                }
+            }
+
             $this->postsOnPage = count($this->posts);
 
             // Add a "url" helper attribute for linking to each post
-            $this->posts->each(function($post) {
+            foreach($this->posts as $post) {
                 $post->setUrl($this->postPage,$this->controller);
 
                 if($post->categories->count()) {
@@ -175,7 +189,7 @@ class BlogTagSearch extends ComponentBase
                         $category->setUrl($this->categoryPage, $this->controller);
                     });
                 }
-            });
+            };
         }
     }
 
@@ -196,7 +210,7 @@ class BlogTagSearch extends ComponentBase
     private function calculatePagination()
     {
         // Count the number of posts with this tag
-        $this->totalPosts = Post::whereHas('tags', function($tag) {
+        $this->totalPosts = Specialization::whereHas('tags', function($tag) {
                 $tag->where('name', $this->property('tag'));
             })
             ->count();

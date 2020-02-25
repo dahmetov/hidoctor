@@ -5,8 +5,9 @@ use Bedard\BlogTags\Models\Tag;
 use Config;
 use Event;
 use System\Classes\PluginBase;
-use RainLab\Blog\Controllers\Posts as PostsController;
+use RainLab\Blog\Controllers\Specializations as SpecializationsController;
 use RainLab\Blog\Models\Post as PostModel;
+use RainLab\Blog\Models\Specialization as SpecializationModel;
 
 /**
  * BlogTags Plugin Information File
@@ -63,18 +64,9 @@ class Plugin extends PluginBase
             ]);
         });
 
-        // extend the post model
-        PostModel::extend(function($model) {
-            $model->belongsToMany['tags'] = [
-                'Bedard\BlogTags\Models\Tag',
-                'table' => 'bedard_blogtags_post_tag',
-                'order' => 'name'
-            ];
-        });
-
         // extend the post form
-        PostsController::extendFormFields(function($form, $model, $context) {
-            if (!$model instanceof PostModel) {
+        SpecializationsController::extendFormFields(function($form, $model, $context) {
+            if (!$model instanceof SpecializationModel) {
                 return;
             }
 

@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'activeTheme' => 'zanor-mdb-loaded',
+    'activeTheme' => 'zanor-zanor-mdb-loaded',
 
     /*
     |--------------------------------------------------------------------------

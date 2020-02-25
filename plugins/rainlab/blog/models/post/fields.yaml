@@ -32,9 +32,35 @@ secondaryTabs:
             stretch: true
             mode: split
 
+        type:
+            tab: rainlab.blog::lang.post.tab_categories
+            type: dropdown
+            options:
+                doctor: Врач
+                clinic: Клиника
+                laboratory: Лаборатория
+                pharmacy: Аптека
+            commentAbove: rainlab.blog::lang.post.categories_comment
+            placeholder: rainlab.blog::lang.post.categories_placeholder
+
         categories:
             tab: rainlab.blog::lang.post.tab_categories
             type: relation
+            commentAbove: rainlab.blog::lang.post.categories_comment
+            placeholder: rainlab.blog::lang.post.categories_placeholder
+
+        specialization:
+            tab: rainlab.blog::lang.post.tab_categories
+            type: relation
+            dependsOn: type
+            commentAbove: rainlab.blog::lang.post.categories_comment
+            placeholder: rainlab.blog::lang.post.categories_placeholder
+
+        parent:
+            tab: rainlab.blog::lang.post.tab_categories
+            type: relation
+            nameFrom: title
+            dependsOn: type
             commentAbove: rainlab.blog::lang.post.categories_comment
             placeholder: rainlab.blog::lang.post.categories_placeholder
 
@@ -79,9 +105,27 @@ secondaryTabs:
             imageHeight: 200
 
         address:
-            tab: rainlab.blog::lang.post.tab_additional
+            tab: rainlab.blog::lang.post.tab_address
             label: rainlab.blog::lang.post.address
             span: left
+            type: text
+
+        price:
+            tab: rainlab.blog::lang.post.tab_additional
+            label: rainlab.blog::lang.post.price
+            span: left
+            type: text
+
+        experience:
+            tab: rainlab.blog::lang.post.tab_additional
+            label: rainlab.blog::lang.post.experience
+            span: right
+            type: text
+
+        languages:
+            tab: rainlab.blog::lang.post.tab_additional
+            label: rainlab.blog::lang.post.languages
+            span: right
             type: text
 
         is_verified:

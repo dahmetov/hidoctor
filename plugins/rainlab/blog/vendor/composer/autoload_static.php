@@ -4,9 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb2f334b0ac55f5ccc795ced1f46dcfa7
+class ComposerStaticInitfe0686a96bc6f2d942b22126c47c497a
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Spatie\\OpeningHours\\' => 20,
+        ),
         'C' => 
         array (
             'Composer\\Installers\\' => 20,
@@ -14,6 +18,10 @@ class ComposerStaticInitb2f334b0ac55f5ccc795ced1f46dcfa7
     );
 
     public static $prefixDirsPsr4 = array (
+        'Spatie\\OpeningHours\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/opening-hours/src',
+        ),
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
@@ -23,8 +31,8 @@ class ComposerStaticInitb2f334b0ac55f5ccc795ced1f46dcfa7
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb2f334b0ac55f5ccc795ced1f46dcfa7::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb2f334b0ac55f5ccc795ced1f46dcfa7::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfe0686a96bc6f2d942b22126c47c497a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfe0686a96bc6f2d942b22126c47c497a::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
