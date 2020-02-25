@@ -11,7 +11,8 @@ categoryPage = "clinic/category"
 slug = "{{ :slug }}"
 ==
 {% set post = blogPost.post %}
-
-{% partial 'clinic/details' %}
-
-{% component 'openingHours' %}
+{% if post.type == 'doctor' %}
+    {% partial 'doctor/details' %}
+{% else %}
+    {% partial 'clinic/details' %}
+{% endif %}

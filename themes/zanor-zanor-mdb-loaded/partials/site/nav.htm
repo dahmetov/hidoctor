@@ -58,12 +58,20 @@ categoryPage = "clinics_list"
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
                 {% for item in items %}
-                    <li class="nav-item {% if this.page.title == item.title %} active {% endif %}">
-                        <a class="nav-link"
-                           href="{{ item.url }}">{{ item.name }} {% if this.page.title == item.title %} <span
-                                    class="sr-only">(current)</span> {% endif %}</a>
-                    </li>
+
                 {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="/clinic/category/apteki">Аптеки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="/clinic/category/doctors">Врачи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="/clinic/category/kliniki">Клиники</a>
+                </li>
             </ul>
         {% endif %}
         <!-- Links -->

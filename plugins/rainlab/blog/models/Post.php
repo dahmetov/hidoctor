@@ -92,13 +92,17 @@ class Post extends Model
      */
     public $belongsTo = [
         'user' => ['Backend\Models\User'],
-        'specialization' => ['RainLab\Blog\Models\Specialization'],
     ];
 
     public $belongsToMany = [
         'categories' => [
             'RainLab\Blog\Models\Category',
             'table' => 'rainlab_blog_posts_categories',
+            'order' => 'name'
+        ],
+        'specializations' => [
+            'RainLab\Blog\Models\Specialization',
+            'table' => 'rainlab_blog_posts_specializations',
             'order' => 'name'
         ]
     ];

@@ -18,20 +18,19 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('rainlab_blog_posts', function($table)
+        Schema::create('rainlab_blog_posts_specializations', function($table)
         {
-            $table->integer('specialization_id')->nullable();
+            $table->engine = 'InnoDB';
+            $table->integer('post_id')->unsigned();
+            $table->integer('specialization_id')->unsigned();
+            $table->primary(['post_id', 'specialization_id']);
         });
     }
 
     public function down()
     {
         Schema::dropIfExists('rainlab_blog_specializations');
-        if (Schema::hasColumn('rainlab_blog_posts', 'specialization_id')) {
-            Schema::table('rainlab_blog_posts', function ($table) {
-                $table->dropColumn('specialization_id');
-            });
-        }
+        Schema::dropIfExists('rainlab_blog_posts_specializations');
     }
 
 }

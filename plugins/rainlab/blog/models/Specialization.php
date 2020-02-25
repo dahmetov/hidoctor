@@ -20,11 +20,12 @@ class Specialization extends Model
 
     protected $guarded = [];
 
-    public $hasMany = [
-        'posts' => ['RainLab\Blog\Models\Post']
-    ];
-
     public $belongsToMany = [
+        'posts' => ['RainLab\Blog\Models\Post',
+            'table' => 'rainlab_blog_posts_specializations',
+            'order' => 'published_at desc',
+            'scope' => 'isPublished'
+        ],
         'tags' => [
             'Bedard\BlogTags\Models\Tag',
             'table' => 'bedard_blogtags_specialization_tag',

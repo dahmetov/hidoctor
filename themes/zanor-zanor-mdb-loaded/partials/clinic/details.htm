@@ -1,42 +1,127 @@
 description = "Blog Post"
 
 [viewBag]
+[commentsPost]
+url="{{ :slug }}"
 ==
 <div class="container">
     <!--row-->
     <div class="row wow fadeIn" data-wow-delay="0.2s">
         <div class="col-md-12">
             <!--Card-->
-            <div class="card">
+            <h3 class="card-title text-center mt-2 pb-4">
+                <strong>{{ post.title }}</strong>
+            </h3>
+            <div class="card-vertical detailed-card">
 
                 {% set image = post.featured_images.first %}
                 <!--Card image-->
-                <div class="view overlay hm-white-slight">
-                    <img src="{{ image.path }}" class="img-fluid" alt="{{ image.description }}">
-                    <div class="mask"></div>
-                </div>
-
-                <!--Card content-->
-                <div class="card-body mb-3">
-                    <!--Title-->
-                    <h3 class="card-title text-center mt-2 pb-4">
-                        <strong>{{ post.title}}</strong>
-                    </h3>
-                    <!--Text-->
-                    <div class="card-text">
-                        {{ post.content_html|raw }}
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="view overlay hm-white-light z-depth-1">
+                            <img src="{{ image.path }}" class="img-fluid" alt="{{ image.description }}">
+                        </div>
+                        <div class="row">
+                            <span class="detailed-rating" id="rate-{{ post.slug }}"></span>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#rate-{{ post.slug }}').starRating({
+                                        useFullStars: true,
+                                        readOnly: true,
+                                        starSize: 30,
+                                    });
+                                })
+                            </script>
+                        </div>
+                        <div class="row register-clinic-button">
+                            <button class="btn btn-primary">Записаться</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card-body mb-3">
+                            <!--Text-->
+                            <div class="card-text">
+                                {{ post.content_html|raw }}
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                       aria-controls="home"
+                       aria-selected="true">График работы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                       aria-controls="profile"
+                       aria-selected="false">Отзывы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                       aria-controls="contact"
+                       aria-selected="false">Галерея</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#doctor_list" role="tab"
+                       aria-controls="contact"
+                       aria-selected="false">Список врачей</a>
+                </li>
 
-                <dif class="card-footer text-muted">
-                    Posted{% if post.categories.count %} in
-                        {% for category in post.categories %}
-                            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    {% set trans = {
+                        'monday': 'Понедельник',
+                        'tuesday': 'Вторник',
+                        'wednesday': 'Среда',
+                        'thursday': 'Четверг',
+                        'friday': 'Пятница',
+                        'saturday': 'Суббота',
+                        'sunday': 'Воскресенье',
+                    } %}
+                    <div class="list-group list-group-flush" id="list-tab" role="tablist">
+                        {% for day, hours in post.openingHours.forWeek() %}
+                            <a class="list-group-item list-group-item-action {{ post.openingHours.isOpenOn(day) ? '' : 'disabled' }}" id="list-home-list" data-toggle="list"
+                               role="tab" aria-controls="home">
+
+                                {{ trans[day] }}:
+
+                                {% for range in hours %}
+                                    <time itemprop="opens" datetime="{{ range.start }}">{{ range.start }}</time>
+                                    -
+                                    <time itemprop="closes"
+                                          datetime="{{ range.end }}">{{ range.end }}</time>{% if not loop.last %}, {% endif %}
+                                {% else %}
+                                    закрыто
+                                {% endfor %}
+
+                                {% if hours.getData() %}
+                                    ({{ hours.getData() }})
+                                {% endif %}
+                            </a>
                         {% endfor %}
-                    {% endif %}
-                    <small class="float-right">{{ post.published_at|date('d M Y') }}</small>
-                </dif>
+                    </div>
 
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    {% component 'commentsPost' %}
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <div id="lightgallery">
+                        {% for image in post.featured_images %}
+                            <a href="{{ image.path }}">
+                                <img src="{{ image.path }}" height="200px"/>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="doctor_list" role="tabpanel" aria-labelledby="profile-tab">
+                    {% for post in post.getChildren() %}
+                        {% partial 'doctor/list-item' post=post %}
+                    {% endfor %}
+                </div>
             </div>
             <!--/.Card-->
         </div>

@@ -5,19 +5,20 @@ description = "Footer"
 {% partial 'footer/4-column' %}
 
 <script src="{{ [
-        'assets/js/jquery-3.2.1.min.js',
         'assets/js/popper.js',
         'assets/js/bootstrap.min.js',
         'assets/js/mdb.min.js',
-        'assets/js/addons/rating.min.js'
+        'assets/js/addons/rating.min.js',
+        'assets/js/addons/jquery.star-rating-svg.js',
+        'assets/lightGallery/js/lightgallery-all.js',
+        'assets/lightGallery/modules/lg-thumbnail.js',
     ]|theme }}"></script>
-
-    {% framework extras %}
-    {% scripts %}
 
 <script>
     new WOW().init();
-    $('#rateMe1').mdbRate();
+    $("#lightgallery").lightGallery({
+        thumbnail:true
+    });
 </script>
 
 </body>

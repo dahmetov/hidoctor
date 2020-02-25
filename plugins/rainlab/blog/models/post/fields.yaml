@@ -49,7 +49,7 @@ secondaryTabs:
             commentAbove: rainlab.blog::lang.post.categories_comment
             placeholder: rainlab.blog::lang.post.categories_placeholder
 
-        specialization:
+        specializations:
             tab: rainlab.blog::lang.post.tab_categories
             type: relation
             dependsOn: type

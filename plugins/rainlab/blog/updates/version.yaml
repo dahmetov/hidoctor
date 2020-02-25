@@ -65,9 +65,9 @@
 1.5.1:
     - Add is doctor field
     - add_is_doctor_field.php
-1.5.2:
-    - Add is specialization
-    - create_specializations_table.php
 1.5.3:
     - Add doctor fields
     - add_doctor_fields.php
+1.5.4:
+    - Add is specialization
+    - create_specializations_table.php

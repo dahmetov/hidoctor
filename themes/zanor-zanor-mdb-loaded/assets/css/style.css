@@ -9,6 +9,49 @@
     background-color: #2b3b68;
 }
 
+.post-item .open {
+    color: green;
+}
+
+.post-item .closed {
+    color: red;
+}
+
+.card-vertical {
+    flex-direction: row;
+    padding: 10px 0;
+}
+.item-list-rating {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.detailed-card {
+    margin-bottom: 20px;
+}
+
+.detailed-card .card-body {
+    padding: 0;
+}
+
+.detailed-rating {
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.register-clinic-button {
+    padding: 0 10px;
+}
+
+.register-clinic-button button {
+    width: 100%;
+}
+
+.tab-content {
+    padding: 10px;
+}
+
 .scrolling-navbar {
     -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
     -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
