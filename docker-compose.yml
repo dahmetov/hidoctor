@@ -1,15 +1,30 @@
 version: "3"
 services:
-  db:
+  app:
+      depends_on:
+        - database
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      ports:
+        - 9080:80
+      environment:
+        DB_HOST: database
+        APP_KEY: 'base64:qm/UMbvRiN5lnWtzWNSS6QNfh5z845Fp39j+9tZoKeo='
+        DB_DATABASE: hidoctor
+        DB_USERNAME: hidoctoruser
+        DB_PASSWORD: hidoctorpassword
+
+  database:
     image: "mdillon/postgis"
     container_name: "hi_doctor"
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=dbUser
-      - POSTGRES_PASSWORD=dbPassword
-      - POSTGRES_DB=doctor
+      - POSTGRES_USER=hidoctoruser
+      - POSTGRES_PASSWORD=hidoctorpassword
+      - POSTGRES_DB=hidoctor
     volumes:
-      - my_dbdata:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data
 volumes:
-  my_dbdata:
+  dbdata:

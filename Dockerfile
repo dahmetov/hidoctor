@@ -1,17 +1,3 @@
-FROM node:8-alpine as frontend-builder
-
-RUN apk add git openssh-client python build-base --update && \
-    rm -rf /var/cache/apk/*
-
-RUN npm set progress=false && npm config set depth 0
-
-WORKDIR /home/frontend-builder
-COPY package*.json ./
-RUN npm install
-
-COPY . /home/frontend-builder
-RUN node_modules/.bin/gulp
-
 FROM php:7.1-apache
 
 RUN apt-get update && apt-get install -y libmcrypt-dev \
@@ -47,7 +33,6 @@ RUN a2dissite 000-default.conf && a2ensite laravel.conf && a2enmod rewrite
 WORKDIR /var/www/html
 COPY . .
 RUN composer install
-COPY --from=frontend-builder /home/frontend-builder/public ./public
 
 RUN chown www-data -R storage public/temp public/t public/export public/assets
 COPY entrypoint.sh /usr/local/bin/docker-php-entrypoint
