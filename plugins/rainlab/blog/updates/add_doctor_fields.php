@@ -4,7 +4,7 @@ use Schema;
 use October\Rain\Database\Updates\Migration;
 use RainLab\Blog\Models\Category as CategoryModel;
 
-class PostsAddMetadata extends Migration
+class AddDoctorFields extends Migration
 {
 
     public function up()

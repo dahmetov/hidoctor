@@ -181,6 +181,7 @@ class Post extends Model
             'perPage'    => 30,
             'sort'       => 'created_at',
             'categories' => null,
+            'type' => null,
             'category'   => null,
             'search'     => '',
             'published'  => true
@@ -244,7 +245,7 @@ class Post extends Model
             });
         }
 
-        return $query->paginate($perPage, $page);
+        return $query->where('type', $type)->paginate($perPage, $page);
     }
 
     /**

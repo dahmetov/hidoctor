@@ -18,16 +18,6 @@ categoryPage = "clinics_list"
             aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <!-- Collapsible content -->
     <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-twitter"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-google-plus-g"></i>
-            </a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
@@ -57,20 +47,17 @@ categoryPage = "clinics_list"
             {% set items = categoryItems %}
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
-                {% for item in items %}
-
-                {% endfor %}
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="/clinic/category/apteki">Аптеки</a>
+                       href="/clinic/type/pharmacy">Аптеки</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="/clinic/category/doctors">Врачи</a>
+                       href="/clinic/type/doctor">Врачи</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="/clinic/category/kliniki">Клиники</a>
+                       href="/clinic/type/clinics">Клиники</a>
                 </li>
             </ul>
         {% endif %}

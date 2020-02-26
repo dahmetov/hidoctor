@@ -35,6 +35,11 @@ class Posts extends ComponentBase
     public $category;
 
     /**
+     * @var string
+     */
+    public $type;
+
+    /**
      * Message to display when there are no messages
      *
      * @var string
@@ -80,6 +85,12 @@ class Posts extends ComponentBase
                 'default'     => '{{ :page }}',
             ],
             'categoryFilter' => [
+                'title'       => 'rainlab.blog::lang.settings.posts_filter',
+                'description' => 'rainlab.blog::lang.settings.posts_filter_description',
+                'type'        => 'string',
+                'default'     => '',
+            ],
+            'typeFilter' => [
                 'title'       => 'rainlab.blog::lang.settings.posts_filter',
                 'description' => 'rainlab.blog::lang.settings.posts_filter_description',
                 'type'        => 'string',
@@ -166,6 +177,7 @@ class Posts extends ComponentBase
         $this->prepareVars();
 
         $this->category = $this->page['category'] = $this->loadCategory();
+        $this->type = $this->page['type'] = $this->property('typeFilter');
         $this->posts = $this->page['posts'] = $this->listPosts();
 
         /*
@@ -195,18 +207,20 @@ class Posts extends ComponentBase
     protected function listPosts()
     {
         $category = $this->category ? $this->category->id : null;
+        $type = $this->type ? $this->type : null;
 
         /*
          * List all the posts, eager load their categories
          */
         $isPublished = !$this->checkEditor();
 
-        $posts = BlogPost::with('categories', 'hours', 'exceptions')->listFrontEnd([
+        $posts = BlogPost::with('categories', 'hours', 'exceptions', 'specializations')->where('type', $type)->listFrontEnd([
             'page'             => $this->property('pageNumber'),
             'sort'             => $this->property('sortOrder'),
             'perPage'          => $this->property('postsPerPage'),
             'search'           => trim(input('search')),
             'category'         => $category,
+            'type'         => $type,
             'published'        => $isPublished,
             'exceptPost'       => is_array($this->property('exceptPost'))
                 ? $this->property('exceptPost')
@@ -221,7 +235,6 @@ class Posts extends ComponentBase
          */
         $posts->each(function($post) {
             $post->setUrl($this->postPage, $this->controller);
-            ;
             $post->categories->each(function($category) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });

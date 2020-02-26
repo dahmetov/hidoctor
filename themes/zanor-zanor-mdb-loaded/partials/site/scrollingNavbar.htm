@@ -4,6 +4,10 @@ description = "Scrolling Nav with Dropdown"
 
 [staticMenu]
 code = "mainmenu"
+
+[categoryMenu]
+code = "mainmenu"
+categoryPage = "clinics_list"
 ==
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
@@ -17,14 +21,28 @@ code = "mainmenu"
 
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {% if staticMenu.menuItems %}
-            {% set items = staticMenu.menuItems %}
+        {% if categoryItems %}
+        {% set items = categoryItems %}
         <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            {% for item in items %}
 
+            {% endfor %}
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="/clinic/category/apteki">Аптеки</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="/clinic/category/doctors">Врачи</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="/clinic/category/kliniki">Клиники</a>
+            </li>
+        </ul>
         {% endif %}
-        <!-- Links -->
     </div>
     <!-- Collapsible content -->
 
 </nav>
-<!--/.Navbar-->

@@ -48,6 +48,15 @@
     width: 100%;
 }
 
+.register-doctor-button {
+    padding: 0 10px;
+    margin: 20px 0;
+}
+
+.register-doctor-button button {
+    width: 100%;
+}
+
 .tab-content {
     padding: 10px;
 }

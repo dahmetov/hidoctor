@@ -1,11 +1,11 @@
 title = "Список Клиник"
-url = "/clinic/category/:slug"
+url = "/clinic/type/:type"
 layout = "noSidebar"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
-categoryFilter = "{{ :slug }}"
+typeFilter = "{{ :type }}"
 postsPerPage = 10
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
@@ -14,6 +14,10 @@ postPage = "details"
 
 {% set posts = blogPosts.posts %}
 
-{% partial 'clinic/list' %}
-
-{% partial 'clinic/pagination' %}
+{% if typeFilter == 'doctors' %}
+    {% partial 'clinic/list' %}
+    {% partial 'clinic/pagination' %}
+{% else %}
+    {% partial 'doctor/list' %}
+    {% partial 'clinic/pagination' %}
+{% endif %}
