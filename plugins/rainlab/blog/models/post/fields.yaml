@@ -40,8 +40,7 @@ secondaryTabs:
                 clinic: Клиника
                 laboratory: Лаборатория
                 pharmacy: Аптека
-            commentAbove: rainlab.blog::lang.post.categories_comment
-            placeholder: rainlab.blog::lang.post.categories_placeholder
+            commentAbove: rainlab.blog::lang.post.type_comment
 
         categories:
             tab: rainlab.blog::lang.post.tab_categories
@@ -53,21 +52,27 @@ secondaryTabs:
             tab: rainlab.blog::lang.post.tab_categories
             type: relation
             dependsOn: type
-            commentAbove: rainlab.blog::lang.post.categories_comment
-            placeholder: rainlab.blog::lang.post.categories_placeholder
+            commentAbove: rainlab.blog::lang.post.specializations_comment
+            placeholder: rainlab.blog::lang.post.specializations_placeholder
 
         parent:
             tab: rainlab.blog::lang.post.tab_categories
             type: relation
             nameFrom: title
             dependsOn: type
-            commentAbove: rainlab.blog::lang.post.categories_comment
-            placeholder: rainlab.blog::lang.post.categories_placeholder
+            commentAbove: rainlab.blog::lang.post.parent_comment
+            placeholder: rainlab.blog::lang.post.parent_placeholder
 
         published:
             tab: rainlab.blog::lang.post.tab_manage
             label: rainlab.blog::lang.post.published
             span: left
+            type: checkbox
+
+        is_verified:
+            tab: rainlab.blog::lang.post.tab_manage
+            label: rainlab.blog::lang.post.is_verified
+            span: right
             type: checkbox
 
         user:
@@ -115,24 +120,20 @@ secondaryTabs:
             label: rainlab.blog::lang.post.price
             span: left
             type: text
+            default: 0
 
         experience:
             tab: rainlab.blog::lang.post.tab_additional
             label: rainlab.blog::lang.post.experience
             span: right
             type: text
+            default: 0
 
         languages:
             tab: rainlab.blog::lang.post.tab_additional
             label: rainlab.blog::lang.post.languages
             span: right
             type: text
-
-        is_verified:
-            tab: rainlab.blog::lang.post.tab_additional
-            label: rainlab.blog::lang.post.is_verified
-            span: left
-            type: checkbox
 
         hours:
             tab: rainlab.blog::lang.post.tab_hours

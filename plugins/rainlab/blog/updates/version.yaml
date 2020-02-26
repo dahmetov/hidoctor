@@ -71,3 +71,6 @@
 1.5.4:
     - Add is specialization
     - create_specializations_table.php
+1.5.5:
+    - Seed specializations
+    - seed_specializations.php

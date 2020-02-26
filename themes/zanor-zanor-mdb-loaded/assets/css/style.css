@@ -61,6 +61,15 @@
     padding: 10px;
 }
 
+.post-title {
+    margin-bottom: 20px;
+}
+
+.additional span {
+
+    color: lightgray;
+}
+
 .scrolling-navbar {
     -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
     -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;

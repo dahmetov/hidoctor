@@ -14,10 +14,10 @@ postPage = "details"
 
 {% set posts = blogPosts.posts %}
 
-{% if typeFilter == 'doctors' %}
-    {% partial 'clinic/list' %}
-    {% partial 'clinic/pagination' %}
-{% else %}
+{% if type == 'doctor' %}
     {% partial 'doctor/list' %}
+    {% partial 'doctor/pagination' %}
+{% else %}
+    {% partial 'clinic/list' %}
     {% partial 'clinic/pagination' %}
 {% endif %}

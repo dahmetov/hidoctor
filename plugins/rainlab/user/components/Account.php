@@ -1,11 +1,14 @@
 <?php namespace RainLab\User\Components;
 
+use Illuminate\Contracts\Logging\Log;
 use Lang;
 use Auth;
 use Mail;
 use Event;
 use Flash;
 use Input;
+use Psr\Log\LogLevel;
+use RainLab\Blog\Models\Post;
 use Request;
 use Redirect;
 use Validator;
@@ -68,6 +71,7 @@ class Account extends ComponentBase
     {
         $this->page['user'] = $this->user();
         $this->page['canRegister'] = $this->canRegister();
+        $this->page['organizations'] = $this->organizations();
         $this->page['loginAttribute'] = $this->loginAttribute();
         $this->page['loginAttributeLabel'] = $this->loginAttributeLabel();
         $this->page['rememberLoginMode'] = $this->rememberLoginMode();
@@ -117,6 +121,14 @@ class Account extends ComponentBase
     public function canRegister()
     {
         return UserSettings::get('allow_registration', true);
+    }
+
+    /**
+     * Flag for allowing registration, pulled from UserSettings
+     */
+    public function organizations()
+    {
+        return Post::where('type', '!=', 'doctor')->get(['id', 'title']);
     }
 
     /**
@@ -251,6 +263,7 @@ class Account extends ComponentBase
              * Validate input
              */
             $data = post();
+            dd($data);
 
             if (!array_key_exists('password_confirmation', $data)) {
                 $data['password_confirmation'] = post('password');
@@ -281,6 +294,7 @@ class Account extends ComponentBase
             $user = Auth::register($data, $automaticActivation);
 
             Event::fire('rainlab.user.register', [$user, $data]);
+            debug($user);
 
             /*
              * Activation is by the user, send the email

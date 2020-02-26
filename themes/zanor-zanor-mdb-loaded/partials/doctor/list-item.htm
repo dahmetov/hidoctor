@@ -44,10 +44,12 @@ description = "List of doctors"
             })
         </script>
 
-        <h6><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp;{{ post.address }}</h6>
-        <h6><i class="fas fa-user-md"></i> &nbsp;&nbsp;{% for specialization in post.specializations %}{{ specialization.name }}, {% endfor %}</h6>
-        <h6><i class="fas fa-money-bill-alt"></i> &nbsp;&nbsp; {{ post.price }}</h6>
-        <h6><i class="fas fa-calendar-alt"></i> &nbsp;&nbsp;{{ post.openingHours.isOpen() ? "<span class='open'>Открыто сейчас</span>" : "<span class='closed'>Закрыто</span>" }}</h6>
+        <div class="additional">
+            <h6><span><i class="fas fa-map-marker-alt"></i></span> &nbsp;&nbsp;{{ post.address }}</h6>
+            <h6><span><i class="fas fa-user-md"></i></span> &nbsp;&nbsp;{% for specialization in post.specializations %}{{ specialization.name }}, {% endfor %}</h6>
+            <h6><span><i class="fas fa-money-bill-alt"></i></span> &nbsp;&nbsp; {{ post.price|number_format(2, '.', ',') }}</h6>
+            <h6><span><i class="fas fa-calendar-alt"></i></span> &nbsp;&nbsp;{{ post.openingHours.isOpen() ? "<span class='open'>Открыто сейчас</span>" : "<span class='closed'>Закрыто</span>" }}</h6>
+        </div>
 
         <p class="my-4 dark-grey-text">{{ post.summary|raw }}</p>
         <span id="rateMe1"></span>

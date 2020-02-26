@@ -1,0 +1,17 @@
+title = "Авторизация"
+url = "/signin"
+layout = "noSidebar"
+is_hidden = 0
+
+[account]
+loginAttributeLabel = "Email адрес"
+==
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h3 class="text-center">Войти</h3>
+
+        {% component 'account::signin' %}
+    </div>
+</div>
+{% framework extras %}
