@@ -3,6 +3,7 @@ url = "/clinic/type/:type"
 layout = "noSidebar"
 is_hidden = 0
 
+[session]
 [blogPosts]
 pageNumber = "{{ :page }}"
 typeFilter = "{{ :type }}"
@@ -10,6 +11,15 @@ postsPerPage = 10
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 postPage = "details"
+==
+
+function onEnd () {
+    if($this->type == 'doctor') {
+        $this->page->title = 'Список врачей';
+    } else if($this->type == 'doctor') {
+        $this->page->title = 'Список клиник';
+    }
+}
 ==
 
 {% set posts = blogPosts.posts %}

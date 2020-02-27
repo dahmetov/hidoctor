@@ -266,4 +266,18 @@ class Posts extends ComponentBase
 
         return $backendUser && $backendUser->hasAccess('rainlab.blog.access_posts') && BlogSettings::get('show_all_posts', true);
     }
+
+    function onEnd() {
+
+        // get the post component
+        $_post = $this->components['post'];
+        $_post = $_post->post; // post is the alias of my component
+
+        // get the title
+        $_title = $_post->title;
+
+        // update the page title
+        $this->page->title = $_title;
+
+    }
 }

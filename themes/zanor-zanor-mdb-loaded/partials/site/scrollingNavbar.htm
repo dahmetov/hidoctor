@@ -46,14 +46,12 @@ categoryPage = "clinics_list"
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a data-request="onLogout" data-request-data="redirect: '/'">Выйти</a>
                 </div>
             </li>
         {% else %}
             <a href="/signin" class="btn btn-primary btn-sm">Войти</a>
-            <a href="/signup" class="btn btn-primary btn-sm">Зарегистрироваться</a>
+            <a href="/register" class="btn btn-primary btn-sm">Зарегистрироваться</a>
         {% endif %}
 
     </ul>

@@ -263,7 +263,6 @@ class Account extends ComponentBase
              * Validate input
              */
             $data = post();
-            dd($data);
 
             if (!array_key_exists('password_confirmation', $data)) {
                 $data['password_confirmation'] = post('password');
@@ -294,7 +293,6 @@ class Account extends ComponentBase
             $user = Auth::register($data, $automaticActivation);
 
             Event::fire('rainlab.user.register', [$user, $data]);
-            debug($user);
 
             /*
              * Activation is by the user, send the email
