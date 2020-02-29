@@ -21,3 +21,6 @@
 1.1.5: Redesigned the report widget.
 1.1.6: Fixed the column check issue.
 1.1.7: Added permission to Dashboard widgets.
+1.1.8:
+    - Added new fields.
+    - add_fields_to_users_table.php

@@ -37,8 +37,15 @@ function onStart()
                     <h1 class="mt-4 mb-5 wow fadeInDown">{{ tagline }}</h1>
                 </li>
                 <li>
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 main-search" type="text" placeholder="Поиск по тегам" aria-label="Поиск по тегам">
+                    <form class="form-inline" method="get" action="/search">
+                            <div class="md-form input-group mb-3 search-box" >
+
+                                <input class="form-control mr-sm-2 main-search" name="search" type="text" placeholder="Поиск по тегам" aria-label="Поиск по тегам">
+                                <div class="input-group-prepend button-group">
+                                    <button class="btn btn-md btn-info m-0 px-3" type="submit">Поиск</button>
+                                </div>
+                            </div>
+
                     </form>
                 </li>
                 <li>

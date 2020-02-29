@@ -58,7 +58,9 @@ class Plugin extends PluginBase
                 'iu_twitter',
                 'iu_skype',
                 'iu_icq',
-                'iu_comment'
+                'iu_comment',
+                'address',
+                'age',
             ]);
         });
 

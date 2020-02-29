@@ -74,3 +74,6 @@
 1.5.5:
     - Seed specializations
     - seed_specializations.php
+1.5.6:
+    - Seed categories
+    - seed_categories.php

@@ -23,6 +23,26 @@ h4 {
     color: #212529 !important;
 }
 
+.search-box {
+    display: flex;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100% !important;
+}
+
+.search-box input {
+    flex: 1 1 0% !important;
+}
+
+.search-box .button-group {
+    width: 150px;
+}
+
+.search-box .button-group button {
+    width: 100%;
+}
+
 
 @media only screen and (max-width: 667px) {
     .display-3 {

@@ -1,0 +1,23 @@
+title = "Результаты поиска"
+url = "/search"
+layout = "noSidebar"
+is_hidden = 0
+
+[blogTagSearch]
+==
+
+<div class="row">
+    <div class="col-md-12">
+        {% if blogTagSearch.posts %}
+                {% for post in blogTagSearch.posts %}
+                    {% if post.type == 'doctor' %}
+                        {% partial 'doctor/list-item' post=post %}
+                    {% else %}
+                        {% partial 'clinic/list-item' post=post %}
+                    {% endif %}
+                {% endfor %}
+        {% else %}
+            Ничего не найдено
+        {% endif %}
+    </div>
+</div>

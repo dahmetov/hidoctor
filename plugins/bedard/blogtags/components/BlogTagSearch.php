@@ -149,47 +149,48 @@ class BlogTagSearch extends ComponentBase
      */
     public function onLoadPage($page = false)
     {
-        // Determine which page we're attempting to load
-        $this->currentPage = $page ?: intval(post('page'));
+        if(get('search')) {
+            // Determine which page we're attempting to load
+            $this->currentPage = $page ?: intval(post('page'));
 
-        // Calculate the pagination variables
-        $this->calculatePagination();
+            // Calculate the pagination variables
+            $this->calculatePagination();
+            // Query the tag with it's posts
+            $this->tags = Tag::where('name', 'ILIKE', '%'.get('search').'%')
+                ->orWhere('slug', 'ILIKE', '%'.get('search').'%')
+                ->with(['specializations' => function($specializations) {
+                    $specializations->with(['posts' => function($posts) {
+                        $posts->skip($this->resultsPerPage * ($this->currentPage - 1))
+                            ->take($this->resultsPerPage);
+                    }]);
+                }])->get();
 
-        // Query the tag with it's posts
-        $this->tags = Tag::where('name', 'ILIKE', '%'.$this->property('tag').'%')
-            ->orWhere('slug', 'ILIKE', '%'.$this->property('tag').'%')
-            ->with(['specializations' => function($specializations) {
-                $specializations->with(['posts' => function($posts) {
-                    $posts->skip($this->resultsPerPage * ($this->currentPage - 1))
-                        ->take($this->resultsPerPage);
-                }]);
-            }])->get();
-
-        // Store the posts in a better container
-        if(empty($this->tags)) {
-            $this->posts = null;
-            $this->postsOnPage = 0;
-        } else {
-            foreach ($this->tags as $tag) {
-                foreach ($tag->specializations as $specialization) {
-                    foreach ($specialization->posts as $post) {
-                        array_push($this->posts, $post);
+            // Store the posts in a better container
+            if(empty($this->tags)) {
+                $this->posts = null;
+                $this->postsOnPage = 0;
+            } else {
+                foreach ($this->tags as $tag) {
+                    foreach ($tag->specializations as $specialization) {
+                        foreach ($specialization->posts as $post) {
+                            array_push($this->posts, $post);
+                        }
                     }
                 }
+
+                $this->postsOnPage = count($this->posts);
+
+                // Add a "url" helper attribute for linking to each post
+                foreach($this->posts as $post) {
+                    $post->setUrl($this->postPage,$this->controller);
+
+                    if($post->categories->count()) {
+                        $post->categories->each(function($category){
+                            $category->setUrl($this->categoryPage, $this->controller);
+                        });
+                    }
+                };
             }
-
-            $this->postsOnPage = count($this->posts);
-
-            // Add a "url" helper attribute for linking to each post
-            foreach($this->posts as $post) {
-                $post->setUrl($this->postPage,$this->controller);
-
-                if($post->categories->count()) {
-                    $post->categories->each(function($category){
-                        $category->setUrl($this->categoryPage, $this->controller);
-                    });
-                }
-            };
         }
     }
 
