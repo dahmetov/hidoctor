@@ -16,7 +16,11 @@ description = "List of doctors"
             </div>
         </div>
         <div class="row register-doctor-button">
-            <button class="btn btn-primary">Записаться</button>
+            {% if user %}
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegisterForm-{{ post.id }}">Записаться</button>
+            {% else %}
+                <a class="btn btn-primary" href="/signin">Записаться</a>
+            {% endif %}
         </div>
 
     </div>
@@ -25,12 +29,12 @@ description = "List of doctors"
     <!--Post excerpt-->
     <div class="col-lg-8">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-8 col-xs-4">
                 <a href="{{ post.url }}">
                     <h2 class="post-title font-bold">{{ post.title }}</h2>
                 </a>
             </div>
-            <div class="col-md-4 item-list-rating">
+            <div class="col-md-4 col-sm-4 col-xs-4 item-list-rating">
                 <span id="rate-{{ post.slug }}"></span>
             </div>
         </div>
@@ -47,7 +51,7 @@ description = "List of doctors"
         <div class="additional">
             <h6><span><i class="fas fa-map-marker-alt"></i></span> &nbsp;&nbsp;{{ post.address }}</h6>
             <h6><span><i class="fas fa-user-md"></i></span> &nbsp;&nbsp;{% for specialization in post.specializations %}{{ specialization.name }}, {% endfor %}</h6>
-            <h6><span><i class="fas fa-money-bill-alt"></i></span> &nbsp;&nbsp; {{ post.price|number_format(2, '.', ',') }}</h6>
+            <h6><span><i class="fas fa-money-bill-alt"></i></span> &nbsp;&nbsp; {{ post.price|number_format(2, '.', ',') }} сом</h6>
             <h6><span><i class="fas fa-calendar-alt"></i></span> &nbsp;&nbsp;{{ post.openingHours.isOpen() ? "<span class='open'>Открыто сейчас</span>" : "<span class='closed'>Закрыто</span>" }}</h6>
         </div>
 

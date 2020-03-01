@@ -15,6 +15,11 @@ class Post extends ComponentBase
     public $post;
 
     /**
+     * @var RainLab\Blog\Models\Post The post model used for display.
+     */
+    public $parent_post;
+
+    /**
      * @var string Reference to the page name for linking to categories.
      */
     public $categoryPage;
@@ -71,6 +76,7 @@ class Post extends ComponentBase
     {
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
         $this->post = $this->page['post'] = $this->loadPost();
+        $this->parent_post = $this->page['parent_post'] = $this->loadParentPost();
     }
 
     public function onRender()
@@ -89,6 +95,35 @@ class Post extends ComponentBase
         $post = $post->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
             ? $post->transWhere('slug', $slug)
             : $post->where('slug', $slug);
+
+        if (!$this->checkEditor()) {
+            $post = $post->isPublished();
+        }
+
+        try {
+            $post = $post->firstOrFail();
+        } catch (ModelNotFoundException $ex) {
+            $this->setStatusCode(404);
+            return $this->controller->run('404');
+        }
+
+        /*
+         * Add a "url" helper attribute for linking to each category
+         */
+        if ($post && $post->categories->count()) {
+            $post->categories->each(function($category) {
+                $category->setUrl($this->categoryPage, $this->controller);
+            });
+        }
+
+        return $post;
+    }
+
+    protected function loadParentPost()
+    {
+        $post = new BlogPost;
+
+        $post = $post->where('id', $this->post->getParentId());
 
         if (!$this->checkEditor()) {
             $post = $post->isPublished();

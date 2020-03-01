@@ -76,3 +76,7 @@
 .comment-reply {
 
 }
+
+#comment-text {
+    padding: 5px;
+}

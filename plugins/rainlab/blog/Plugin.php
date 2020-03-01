@@ -29,7 +29,8 @@ class Plugin extends PluginBase
             'RainLab\Blog\Components\Categories' => 'blogCategories',
             'RainLab\Blog\Components\Clinic' => 'clinic',
             'RainLab\Blog\Components\OpeningHours' => 'openingHours',
-            'RainLab\Blog\Components\RssFeed'    => 'blogRssFeed'
+            'RainLab\Blog\Components\RssFeed'    => 'blogRssFeed',
+            'RainLab\Blog\Components\Registration'    => 'blogRegistration'
         ];
     }
 
@@ -50,7 +51,7 @@ class Plugin extends PluginBase
             ],
             'rainlab.blog.access_specializations' => [
                 'tab'   => 'rainlab.blog::lang.blog.tab',
-                'label' => 'rainlab.blog::lang.blog.access_categories'
+                'label' => 'rainlab.blog::lang.blog.access_specializations'
             ],
             'rainlab.blog.access_other_posts' => [
                 'tab'   => 'rainlab.blog::lang.blog.tab',
@@ -102,6 +103,12 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-list-ul',
                         'url'         => Backend::url('rainlab/blog/specializations'),
                         'permissions' => ['rainlab.blog.access_specializations']
+                    ],
+                    'registrations' => [
+                        'label'       => 'rainlab.blog::lang.blog.registrations',
+                        'icon'        => 'icon-list-ul',
+                        'url'         => Backend::url('rainlab/blog/registrations'),
+                        'permissions' => ['rainlab.blog.access_registrations']
                     ]
                 ]
             ]

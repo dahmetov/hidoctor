@@ -214,21 +214,41 @@ class Posts extends ComponentBase
          */
         $isPublished = !$this->checkEditor();
 
-        $posts = BlogPost::with('categories', 'hours', 'exceptions', 'specializations')->where('type', $type)->listFrontEnd([
-            'page'             => $this->property('pageNumber'),
-            'sort'             => $this->property('sortOrder'),
-            'perPage'          => $this->property('postsPerPage'),
-            'search'           => trim(input('search')),
-            'category'         => $category,
-            'type'         => $type,
-            'published'        => $isPublished,
-            'exceptPost'       => is_array($this->property('exceptPost'))
-                ? $this->property('exceptPost')
-                : preg_split('/,\s*/', $this->property('exceptPost'), -1, PREG_SPLIT_NO_EMPTY),
-            'exceptCategories' => is_array($this->property('exceptCategories'))
-                ? $this->property('exceptCategories')
-                : preg_split('/,\s*/', $this->property('exceptCategories'), -1, PREG_SPLIT_NO_EMPTY),
-        ]);
+        if($type) {
+            $posts = BlogPost::with('categories', 'hours', 'exceptions', 'specializations')->where('type', $type)->listFrontEnd([
+                'page'             => $this->property('pageNumber'),
+                'sort'             => $this->property('sortOrder'),
+                'perPage'          => $this->property('postsPerPage'),
+                'search'           => trim(input('search')),
+                'category'         => $category,
+                'type'         => $type,
+                'published'        => $isPublished,
+                'exceptPost'       => is_array($this->property('exceptPost'))
+                    ? $this->property('exceptPost')
+                    : preg_split('/,\s*/', $this->property('exceptPost'), -1, PREG_SPLIT_NO_EMPTY),
+                'exceptCategories' => is_array($this->property('exceptCategories'))
+                    ? $this->property('exceptCategories')
+                    : preg_split('/,\s*/', $this->property('exceptCategories'), -1, PREG_SPLIT_NO_EMPTY),
+            ]);
+        } else {
+            $posts = BlogPost::with('categories', 'hours', 'exceptions', 'specializations')->listFrontEnd([
+                'page'             => $this->property('pageNumber'),
+                'sort'             => $this->property('sortOrder'),
+                'perPage'          => $this->property('postsPerPage'),
+                'search'           => trim(input('search')),
+                'category'         => $category,
+                'type'         => $type,
+                'published'        => $isPublished,
+                'exceptPost'       => is_array($this->property('exceptPost'))
+                    ? $this->property('exceptPost')
+                    : preg_split('/,\s*/', $this->property('exceptPost'), -1, PREG_SPLIT_NO_EMPTY),
+                'exceptCategories' => is_array($this->property('exceptCategories'))
+                    ? $this->property('exceptCategories')
+                    : preg_split('/,\s*/', $this->property('exceptCategories'), -1, PREG_SPLIT_NO_EMPTY),
+            ]);
+        }
+
+
 
         /*
          * Add a "url" helper attribute for linking to each post and category

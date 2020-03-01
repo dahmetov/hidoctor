@@ -6,17 +6,20 @@ return [
         'description' => 'A robust blogging platform.'
     ],
     'blog' => [
-        'menu_label' => 'Blog',
+        'menu_label' => 'Items',
         'menu_description' => 'Manage Blog Posts',
         'posts' => 'Posts',
         'create_post' => 'Blog post',
+        'create_registration' => 'registration',
         'categories' => 'Categories',
         'specializations' => 'Specializations',
+        'registrations' => 'Registrations',
         'create_category' => 'Blog category',
         'create_specialization' => 'Specialization',
         'tab' => 'Blog',
         'access_posts' => 'Manage the blog posts',
         'access_categories' => 'Manage the blog categories',
+        'access_specializations' => 'Manage the blog specializations',
         'access_other_posts' => 'Manage other users blog posts',
         'access_import_export' => 'Allowed to import and export posts',
         'access_publish' => 'Allowed to publish posts',
@@ -106,6 +109,19 @@ return [
     'specializations' => [
         'list_title' => 'Manage the blog specializations',
         'new_specialization' => 'New specialization',
+        'uncategorized' => 'Uncategorized'
+    ],
+    'registrations' => [
+        'list_title' => 'Manage the registrations',
+        'new_registration' => 'New registrations',
+        'select_post' => 'Please select clinic or doctor',
+        'select_date' => 'Please select registration date',
+        'comment_label' => 'Please write your comment',
+        'comment' => 'Your comment',
+        'comment_column' => 'Comment',
+        'post_name' => 'Clinic / doctor',
+        'date' => 'Date',
+        'user' => 'User',
         'uncategorized' => 'Uncategorized'
     ],
     'menuitem' => [

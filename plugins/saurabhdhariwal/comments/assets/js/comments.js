@@ -18,6 +18,7 @@ var Comment = function () {
 
         saveButton: function (event) {
             event.preventDefault();
+            console.log(self);
             $(self.commentName + ' form').request('onSaveCommentButton', {
                 data: {'parent_id': self.parent_id},
                 success: function (data) {

@@ -1,0 +1,35 @@
+title = "Список Клиник"
+url = "/clinic/type/:type"
+layout = "noSidebar"
+is_hidden = 0
+
+[session]
+[blogPosts]
+pageNumber = "{{ :page }}"
+typeFilter = "{{ :type }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+postPage = "details"
+
+[blogRegistration]
+==
+
+function onEnd () {
+    if($this->type == 'doctor') {
+        $this->page->title = 'Список врачей';
+    } else if($this->type == 'doctor') {
+        $this->page->title = 'Список клиник';
+    }
+}
+==
+
+{% set posts = blogPosts.posts %}
+
+{% if type == 'doctor' %}
+    {% partial 'doctor/list' %}
+    {% partial 'doctor/pagination' %}
+{% else %}
+    {% partial 'clinic/list' %}
+    {% partial 'clinic/pagination' %}
+{% endif %}

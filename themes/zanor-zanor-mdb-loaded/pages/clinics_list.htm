@@ -1,33 +1,21 @@
 title = "Список Клиник"
-url = "/clinic/type/:type"
+url = "/clinic/categories/:slug"
 layout = "noSidebar"
 is_hidden = 0
 
 [session]
 [blogPosts]
 pageNumber = "{{ :page }}"
-typeFilter = "{{ :type }}"
+categoryFilter = "{{ :slug }}"
 postsPerPage = 10
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 postPage = "details"
-==
 
-function onEnd () {
-    if($this->type == 'doctor') {
-        $this->page->title = 'Список врачей';
-    } else if($this->type == 'doctor') {
-        $this->page->title = 'Список клиник';
-    }
-}
+[blogRegistration]
 ==
 
 {% set posts = blogPosts.posts %}
 
-{% if type == 'doctor' %}
-    {% partial 'doctor/list' %}
-    {% partial 'doctor/pagination' %}
-{% else %}
-    {% partial 'clinic/list' %}
-    {% partial 'clinic/pagination' %}
-{% endif %}
+{% partial 'clinic/list' %}
+{% partial 'clinic/pagination' %}

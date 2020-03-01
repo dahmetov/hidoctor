@@ -77,3 +77,6 @@
 1.5.6:
     - Seed categories
     - seed_categories.php
+1.5.7:
+    - Create registrations table
+    - create_registrations_table.php

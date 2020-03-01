@@ -4,4 +4,5 @@ description = "List of doctors"
 ==
 {% for post in posts %}
     {% partial 'doctor/list-item' post=post %}
+    {% partial 'registerModal' post=post %}
 {% endfor %}

@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: rainlab.blog::lang.blog.create_registration
+form: ~/plugins/rainlab/blog/models/registration/fields.yaml
+modelClass: RainLab\Blog\Models\Registration
+defaultRedirect: rainlab/blog/Registrations
+
+create:
+    redirect: rainlab/blog/registrations/update/:id
+    redirectClose: rainlab/blog/registrations
+
+update:
+    redirect: rainlab/blog/registrations
+    redirectClose: rainlab/blog/registrations

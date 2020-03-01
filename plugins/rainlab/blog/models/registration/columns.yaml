@@ -1,0 +1,20 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    date:
+        label: rainlab.blog::lang.registrations.date
+        searchable: true
+
+    user:
+        label: rainlab.blog::lang.registrations.user
+        relation: user
+        select: email
+        searchable: true
+        sortable: false
+
+    comment:
+        label: rainlab.blog::lang.registrations.comment_column
+        searchable: true

@@ -1,0 +1,33 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    date:
+        label: rainlab.blog::lang.registrations.select_date
+        span: left
+        type: datepicker
+        mode: datetime
+
+    user:
+        tab: rainlab.blog::lang.post.tab_manage
+        label: rainlab.blog::lang.post.published_by
+        span: right
+        type: relation
+        nameFrom: email
+        emptyOption: rainlab.blog::lang.post.current_user
+
+    post:
+        label: rainlab.blog::lang.registrations.post_name
+        span: right
+        type: relation
+        nameFrom: title
+        emptyOption: rainlab.blog::lang.registrations.select_post
+
+    comment:
+        tab: rainlab.blog::lang.registrations.comment
+        label: rainlab.blog::lang.registrations.comment_label
+        span: left
+        type: text
+

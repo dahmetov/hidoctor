@@ -44,7 +44,7 @@
     padding: 0 10px;
 }
 
-.register-clinic-button button {
+.register-clinic-button button, .register-clinic-button a {
     width: 100%;
 }
 
@@ -54,6 +54,10 @@
 }
 
 .register-doctor-button button {
+    width: 100%;
+}
+
+.register-doctor-button button, .register-doctor-button a {
     width: 100%;
 }
 
@@ -70,6 +74,14 @@
     color: lightgray;
 }
 
+.additional-info-row {
+    align-items: center;
+}
+
+.details-divider {
+    margin: 0;
+    padding: 0 !important;
+}
 .scrolling-navbar {
     -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
     -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
@@ -137,5 +149,11 @@ footer.page-footer .footer-copyright {
     }
     h3 {
         font-size: 1.3rem;
+    }
+    .item-list-rating {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        margin-bottom: 20px;
     }
 }
