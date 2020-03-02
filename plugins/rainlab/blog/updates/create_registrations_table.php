@@ -4,7 +4,7 @@ use RainLab\Blog\Models\Specialization;
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateRegistrationsTable extends Migration
 {
 
     public function up()
