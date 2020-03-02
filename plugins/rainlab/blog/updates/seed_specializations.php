@@ -6,6 +6,7 @@ use RainLab\Blog\Models\Post;
 use RainLab\Blog\Models\Category;
 use October\Rain\Database\Updates\Seeder;
 use RainLab\Blog\Models\Specialization;
+use Schema;
 
 class SeedSpecializations extends Seeder
 {
