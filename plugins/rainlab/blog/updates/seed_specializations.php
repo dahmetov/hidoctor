@@ -328,23 +328,24 @@ class SeedSpecializations extends Seeder
 
     public function run()
     {
-        foreach ($this->data as $key => $specialization) {
-            $specialization_created = Specialization::create([
-                'name' => $specialization['name'],
-                'slug' => $key,
-            ]);
-            foreach ($specialization['tags'] as $tag) {
-                if(Tag::where('slug', str_slug($tag))->count()) {
-                    $tag_created = Tag::where('slug', str_slug($tag))->first();
-                } else {
-                    $tag_created = Tag::create([
-                        'name' => $tag,
-                        'slug' => str_slug($tag)
-                    ]);
+        if(Schema::hasTable('bedard_blogtags_tags') && Schema::hasTable('bedard_blogtags_specialization_tag')) {
+            foreach ($this->data as $key => $specialization) {
+                $specialization_created = Specialization::create([
+                    'name' => $specialization['name'],
+                    'slug' => $key,
+                ]);
+                foreach ($specialization['tags'] as $tag) {
+                    if(Tag::where('slug', str_slug($tag))->count()) {
+                        $tag_created = Tag::where('slug', str_slug($tag))->first();
+                    } else {
+                        $tag_created = Tag::create([
+                            'name' => $tag,
+                            'slug' => str_slug($tag)
+                        ]);
+                    }
+                    $specialization_created->tags()->attach($tag_created);
                 }
-                $specialization_created->tags()->attach($tag_created);
             }
-
         }
     }
 
