@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use RainLab\Blog\Models\Category;
 use October\Rain\Database\Updates\Seeder;
 
-class SeedSpecializations extends Seeder
+class SeedCategories extends Seeder
 {
     public $data = [
         "Аптеки" => [
