@@ -1,34 +1,34 @@
 fields:
     weekday:
-        label: 'offline.openinghours::lang.common.weekday'
+        label: 'rainlab.blog::lang.hours.common.weekday'
         span: auto
         type: balloon-selector
         context: update
     weekdays:
-        label: 'offline.openinghours::lang.common.weekday'
+        label: 'rainlab.blog::lang.hours.common.weekday'
         span: auto
         type: checkboxlist
         context: create
     note:
-        label: 'offline.openinghours::lang.common.note'
+        label: 'rainlab.blog::lang.hours.common.note'
         span: auto
         type: text
 tabs:
     fields:
         hours:
-            tab: 'offline.openinghours::lang.common.hours'
-            prompt: 'offline.openinghours::lang.common.add'
+            tab: 'rainlab.blog::lang.hours.common.hours'
+            prompt: 'rainlab.blog::lang.hours.common.add'
             span: full
             type: repeater
             form:
                 fields:
                     from:
-                        label: 'offline.openinghours::lang.hours.from'
+                        label: 'rainlab.blog::lang.hours.hours.from'
                         span: auto
                         type: datepicker
                         mode: time
                     to:
-                        label: 'offline.openinghours::lang.hours.to'
+                        label: 'rainlab.blog::lang.hours.hours.to'
                         mode: time
                         span: auto
                         type: datepicker

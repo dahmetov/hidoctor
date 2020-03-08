@@ -25,6 +25,11 @@ class BlogTagSearch extends ComponentBase
     public $posts = [];
 
     /**
+     * @var Illuminate\Database\Eloquent\Collection | array
+     */
+    public $specializations = [];
+
+    /**
      * @var integer             The total number of posts with the tag
      */
     public $totalPosts;
@@ -140,8 +145,13 @@ class BlogTagSearch extends ComponentBase
     {
         $this->postPage = $this->page['postPage'] = $this->property('postPage');
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
+        $this->specializations = $this->page['specializations'] = $this->loadSpecializations();
 
         $this->onLoadPage($this->property('page'));
+    }
+
+    public function loadSpecializations() {
+        return Specialization::all();
     }
 
     /**

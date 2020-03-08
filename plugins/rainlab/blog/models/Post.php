@@ -310,10 +310,13 @@ class Post extends Model
             'categories' => null,
             'exceptCategories' => null,
             'category' => null,
+            'specialization' => null,
             'search' => '',
             'published' => true,
             'exceptPost' => null
         ], $options));
+
+        debug($options);
 
         $searchableFields = ['title', 'slug', 'excerpt', 'content'];
 
@@ -403,6 +406,16 @@ class Post extends Model
             $categories = $category->getAllChildrenAndSelf()->lists('id');
             $query->whereHas('categories', function ($q) use ($categories) {
                 $q->whereIn('id', $categories);
+            });
+        }
+
+        if ($specialization !== null) {
+            $specialization = Specialization::find($specialization);
+
+            $specializations = [$specialization->id];
+            $query->whereHas('specializations', function ($q) use ($specializations) {
+
+                $q->whereIn('id', $specializations);
             });
         }
 

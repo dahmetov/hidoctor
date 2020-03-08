@@ -39,7 +39,7 @@ trait DateUtils
         }
 
         return collect($values)->mapWithKeys(function ($key, $value) {
-            return [$value => trans('offline.openinghours::lang.weekdays.' . $value)];
+            return [$value => trans('rainlab.blog::lang.hours.weekdays.' . $value)];
         })->toArray();
     }
 

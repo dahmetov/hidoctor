@@ -4,7 +4,7 @@
     {% set count = 0 %}
     {% if category.parent_id %}
         <div class="col-sm-6">
-            <a href="{{ category.url }}" class="btn btn-info btn-md mb-4">{{ category.name }}</a>
+            <a href="{{ category.url }}" class="btn btn-info btn-md mb-4 clinic-category-button">{{ category.name }}</a>
             {% if posts|length > 0 %}
                 <div class="col-sm-12">
                     {% for post in posts %}

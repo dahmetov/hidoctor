@@ -1,0 +1,38 @@
+title = "Статьи"
+url = "/article/:slug"
+layout = "noSidebar"
+is_hidden = 0
+
+[session]
+
+[ArticlePage]
+slug = "{{ :slug }}"
+slug_required = 1
+==
+{% set obArticle = ArticlePage.get() %}
+<!-- Card -->
+<div class="card card-cascade wider reverse">
+
+    <!-- Card image -->
+    <div class="view view-cascade overlay">
+        <img class="card-img-top" src="{{ obArticle.preview_image.path }}"
+             alt="Card image cap">
+        <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+
+    <!-- Card content -->
+    <div class="card-body card-body-cascade text-center">
+
+        <!-- Title -->
+        <h4 class="card-title"><strong>{{ obArticle.title }}</strong></h4>
+        <!-- Subtitle -->
+        <h6 class="font-weight-bold indigo-text py-2">{{ obArticle.published_start.format('F d, Y') }}</h6>
+        <!-- Text -->
+        <p class="card-text">{{ obArticle.content|raw }}</p>
+
+    </div>
+
+</div>
+<!-- Card -->

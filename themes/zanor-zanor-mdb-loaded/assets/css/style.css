@@ -1,8 +1,110 @@
 /* Your custom styles */
 /* Navigation*/
-
+body {
+    font-family: "PT Sans", sans-serif;
+    overflow-x: hidden;
+}
 .navbar {
     background-color: transparent;
+    font-weight: 400;
+}
+.clinic-category-button {
+    width: 100%;
+}
+.card {
+    font-weight: 300;
+}
+.card__label__text {
+    font-weight: 700;
+    font-size: 14px;
+    color: #5e6e71;
+    margin-bottom: 6px;
+    display: block;
+}
+.benefits__title {
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.benefits__title_item {
+    font-size: 13px;
+    line-height: 14px;
+}
+
+.benefits__title span {
+    font-size: 13px;
+    color: #4285F4;
+}
+
+.small-card {
+    min-height: 85px;
+    padding: 15px 150px 17px 20px;
+}
+.cl-0 .small-card__line {
+    background:#94d177;
+}
+
+.small-card__title {
+
+    display: inline-block;
+    margin-top: -4px;
+
+}
+
+.small-card__gtext {
+
+    color:
+
+            #5e6e71;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-bottom: 7px;
+
+}
+
+.card__location__wrapper {
+
+    display: box;
+    display: flex;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+
+}
+
+.clinic-info {
+    border-left: 5px solid #4285F4;
+    margin-bottom: 20px;
+}
+
+.small-card__abs {
+    height: 100%;
+    width: 145px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    padding-left: 28px;
+    padding-top: 14px;
+}
+
+.card__address__text, .card__location__text, .card__metro__text, .small-card__address__text, .small-card__location__text, .small-card__metro__text {
+    display: inline-block;
+    vertical-align: top;
+    font-weight: 400;
+    line-height: 13px;
+    font-size: 12px;
+    color: #5e6e71;
+    margin: 1px 3px 8px;
+}
+
+.search-page-input-block {
+    width: 100% !important;
+}
+
+.search-page-input-block::placeholder {
+    color: #5e6e71;
 }
 
 .nav-blue {

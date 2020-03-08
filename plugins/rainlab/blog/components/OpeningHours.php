@@ -34,8 +34,8 @@ class OpeningHours extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.openinghours::lang.components.opening_hours.name',
-            'description' => 'offline.openinghours::lang.components.opening_hours.description',
+            'name'        => 'rainlab.blog::lang.hours.components.opening_hours.name',
+            'description' => 'rainlab.blog::lang.hours.components.opening_hours.description',
             'icon'        => 'clock',
         ];
     }
@@ -44,8 +44,8 @@ class OpeningHours extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'offline.openinghours::lang.components.opening_hours.slug.title',
-                'description' => 'offline.openinghours::lang.components.opening_hours.slug.description',
+                'title'       => 'rainlab.blog::lang.hours.components.opening_hours.slug.title',
+                'description' => 'rainlab.blog::lang.hours.components.opening_hours.slug.description',
                 'type'        => 'dropdown',
             ],
         ];

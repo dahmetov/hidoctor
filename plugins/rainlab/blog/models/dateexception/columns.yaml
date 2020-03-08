@@ -1,38 +1,38 @@
 columns:
     for_date:
-        label: 'offline.openinghours::lang.date.for'
+        label: 'rainlab.blog::lang.hours.date.for'
         type: date
         searchable: true
         sortable: true
     yearly:
-        label: 'offline.openinghours::lang.date.yearly'
+        label: 'rainlab.blog::lang.hours.date.yearly'
         type: switch
         searchable: true
         sortable: true
     hours_string:
-        label: 'offline.openinghours::lang.common.hours'
+        label: 'rainlab.blog::lang.hours.common.hours'
         type: text
         searchable: false
         sortable: false
     note:
-        label: 'offline.openinghours::lang.common.note'
+        label: 'rainlab.blog::lang.hours.common.note'
         type: text
         searchable: true
         sortable: true
     post_id:
-        label: 'offline.openinghours::lang.common.location'
+        label: 'rainlab.blog::lang.hours.common.location'
         type: number
         searchable: true
         invisible: true
         sortable: true
     created_at:
-        label: 'offline.openinghours::lang.date.created_at'
+        label: 'rainlab.blog::lang.hours.date.created_at'
         type: datetime
         searchable: true
         invisible: true
         sortable: true
     updated_at:
-        label: 'offline.openinghours::lang.date.updated_at'
+        label: 'rainlab.blog::lang.hours.date.updated_at'
         type: datetime
         searchable: true
         invisible: true

@@ -1,17 +1,17 @@
 columns:
     weekday:
-        label: 'offline.openinghours::lang.common.weekday'
+        label: 'rainlab.blog::lang.hours.common.weekday'
         type: partial
         path: weekday_translated
         searchable: true
         sortable: true
     hours_string:
-        label: 'offline.openinghours::lang.common.hours'
+        label: 'rainlab.blog::lang.hours.common.hours'
         type: text
         searchable: false
         sortable: false
     post_id:
-        label: 'offline.openinghours::lang.common.location'
+        label: 'rainlab.blog::lang.hours.common.location'
         type: number
         searchable: true
         sortable: true

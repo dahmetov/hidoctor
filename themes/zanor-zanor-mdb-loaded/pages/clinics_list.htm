@@ -1,5 +1,5 @@
 title = "Список Клиник"
-url = "/clinic/categories/:slug"
+url = "/clinics"
 layout = "noSidebar"
 is_hidden = 0
 
@@ -7,8 +7,9 @@ is_hidden = 0
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "{{ :slug }}"
+typeFilter = "clinic"
 postsPerPage = 10
-noPostsMessage = "No posts found"
+noPostsMessage = "Ничего не найдено"
 sortOrder = "published_at desc"
 postPage = "details"
 
@@ -16,6 +17,24 @@ postPage = "details"
 ==
 
 {% set posts = blogPosts.posts %}
+<form class="form-inline" method="get" action="/clinics">
+    <div class="input-group mb-3 search-page-input-block">
+        <select name="categoryFilter" id="categoryFilter" class="browser-default custom-select">
+            {% for category in blogPosts.categories %}
+                {% if category.children %}
+                    {% for child in category.children %}
+                        <option value="{{ child.slug }}">{{ child.name }}</option>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-md btn-primary m-0 px-3 py-2 z-depth-0 waves-effect" type="submit"
+                    id="button-addon2">Найти
+            </button>
+        </div>
+    </div>
+</form>
 
 {% partial 'clinic/list' %}
 {% partial 'clinic/pagination' %}

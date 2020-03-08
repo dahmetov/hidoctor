@@ -1,6 +1,7 @@
 <?php namespace RainLab\Blog\Components;
 
 use Lang;
+use RainLab\Blog\Models\Specialization;
 use Redirect;
 use BackendAuth;
 use Cms\Classes\Page;
@@ -33,6 +34,27 @@ class Posts extends ComponentBase
      * @var Model
      */
     public $category;
+
+    /**
+     * If the post list should be filtered by a category, the model to use
+     *
+     * @var Model
+     */
+    public $categories;
+
+    /**
+     * If the post list should be filtered by a category, the model to use
+     *
+     * @var Model
+     */
+    public $specialization;
+
+    /**
+     * If the post list should be filtered by a category, the model to use
+     *
+     * @var Model
+     */
+    public $specializations;
 
     /**
      * @var string
@@ -85,6 +107,12 @@ class Posts extends ComponentBase
                 'default'     => '{{ :page }}',
             ],
             'categoryFilter' => [
+                'title'       => 'rainlab.blog::lang.settings.posts_filter',
+                'description' => 'rainlab.blog::lang.settings.posts_filter_description',
+                'type'        => 'string',
+                'default'     => '',
+            ],
+            'specializationFilter' => [
                 'title'       => 'rainlab.blog::lang.settings.posts_filter',
                 'description' => 'rainlab.blog::lang.settings.posts_filter_description',
                 'type'        => 'string',
@@ -177,8 +205,11 @@ class Posts extends ComponentBase
         $this->prepareVars();
 
         $this->category = $this->page['category'] = $this->loadCategory();
+        $this->specialization = $this->page['specialization'] = $this->loadSpecialization();
         $this->type = $this->page['type'] = $this->property('typeFilter');
         $this->posts = $this->page['posts'] = $this->listPosts();
+        $this->categories = $this->page['categories'] = $this->loadCategories();
+        $this->specializations = $this->page['specializations'] = $this->loadSpecializations();
 
         /*
          * If the page number is not valid, redirect
@@ -207,7 +238,10 @@ class Posts extends ComponentBase
     protected function listPosts()
     {
         $category = $this->category ? $this->category->id : null;
+        $specialization = $this->specialization ? $this->specialization->id : null;
         $type = $this->type ? $this->type : null;
+
+        debug($specialization);
 
         /*
          * List all the posts, eager load their categories
@@ -221,6 +255,7 @@ class Posts extends ComponentBase
                 'perPage'          => $this->property('postsPerPage'),
                 'search'           => trim(input('search')),
                 'category'         => $category,
+                'specialization'         => $specialization,
                 'type'         => $type,
                 'published'        => $isPublished,
                 'exceptPost'       => is_array($this->property('exceptPost'))
@@ -237,6 +272,7 @@ class Posts extends ComponentBase
                 'perPage'          => $this->property('postsPerPage'),
                 'search'           => trim(input('search')),
                 'category'         => $category,
+                'specialization'         => $specialization,
                 'type'         => $type,
                 'published'        => $isPublished,
                 'exceptPost'       => is_array($this->property('exceptPost'))
@@ -266,7 +302,9 @@ class Posts extends ComponentBase
     protected function loadCategory()
     {
         if (!$slug = $this->property('categoryFilter')) {
-            return null;
+            if(!$slug = get('categoryFilter')) {
+                return null;
+            }
         }
 
         $category = new BlogCategory;
@@ -280,12 +318,63 @@ class Posts extends ComponentBase
         return $category ?: null;
     }
 
+    protected function loadSpecialization()
+    {
+        if (!$slug = $this->property('specializationFilter')) {
+            if(!$slug = get('specializationFilter')) {
+                return null;
+            }
+        }
+
+        $specialization = new Specialization();
+        $specialization = $specialization->where('slug', $slug);
+        $specialization = $specialization->first();
+        return $specialization ?: null;
+    }
+
     protected function checkEditor()
     {
         $backendUser = BackendAuth::getUser();
 
         return $backendUser && $backendUser->hasAccess('rainlab.blog.access_posts') && BlogSettings::get('show_all_posts', true);
     }
+
+    /**
+     * Load all categories or, depending on the <displayEmpty> option, only those that have blog posts
+     * @return mixed
+     */
+    protected function loadCategories()
+    {
+        $categories = BlogCategory::where('code', 'clinics')->with('posts_count')->getNested();
+
+        $iterator = function ($categories) use (&$iterator) {
+            return $categories->reject(function ($category) use (&$iterator) {
+                if ($category->getNestedPostCount() == 0) {
+                    return true;
+                }
+
+                if ($category->children) {
+                    $category->children = $iterator($category->children);
+                }
+                return false;
+            });
+        };
+        $categories = $iterator($categories);
+        /*
+         * Add a "url" helper attribute for linking to each category
+         */
+        return $categories;
+    }
+
+    /**
+     * Load all categories or, depending on the <displayEmpty> option, only those that have blog posts
+     * @return mixed
+     */
+    protected function loadSpecializations()
+    {
+        return Specialization::all();
+    }
+
 
     function onEnd() {
 

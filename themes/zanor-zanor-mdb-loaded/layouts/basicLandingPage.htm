@@ -7,6 +7,8 @@ default = 0
 [blogTagSearch]
 tag="головная"
 
+[ArticleList]
+
 [session]
 ==
 <?php
@@ -19,39 +21,38 @@ function onStart()
 {% partial 'site/head' %}
 {% partial 'site/scrollingNavbar' %}
 
-{variable name="tagline" label="Tagline" tab="Intro" type="text"}{/variable}
-{variable name="btn1Text" label="Button 1 Text" tab="Intro" type="text"}{/variable}
-{variable name="btn1Link" label="Button 1 Link" tab="Intro" type="text"}{/variable}
-{variable name="btn2Text" label="Button 2 Text" tab="Intro" type="text"}{/variable}
-{variable name="btn2Link" label="Button 2 Link" tab="Intro" type="text"}{/variable}
-{variable name="TagsList" label="Tags list" tab="Intro" type="text"}{/variable}
-{variable name="bgImage" label="Background Image" tab="Intro" type="mediafinder" mode="image"}{/variable}
-
-{% set bg = bgImage %}
+{variable name="tagline" label="Заголовок" tab="Intro" type="text"}{/variable}
+{variable name="bgColor" label="Цвет заднего фона" tab="Intro" type="colorpicker"}{/variable}
+{variable name="TagsList" label="Список тегов" tab="Intro" type="text"}{/variable}
 <!--Intro Section-->
-<section class="view intro-1 hm-black-slight" style="background: url({% if bg == '' %}'https://mdbootstrap.com/img/Photos/Others/images/79.jpg'{% else %}{{ bgImage|media }}{% endif %})no-repeat center center; background-size: cover;">
-    <div class="full-bg-img flex-center">
+<section class="intro-1 hm-black-slight" style="">
+    <div class="row" style="background: {{ bgColor }}">
+        <div class="container d-flex justify-content-between flex-md-column main-container">
+            <h3 class="mt-4 mb-5 wow fadeInDown text-center">{{ tagline }}</h3>
+            <form class="form-inline" method="get" action="/search">
+                <div class="input-group mb-3 search-box">
+                    <input type="text" name="search" class="form-control" placeholder="{{ TagsList }}"
+                           aria-label="Recipient's username"
+                           aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-md btn-primary m-0 px-3 py-2 z-depth-0 waves-effect" type="submit"
+                                id="button-addon2">Найти
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <p class="mt-4 mb-5 wow fadeInDown text-left">{{ TagsList }}</p>
+        </div>
+    </div>
+    <div class="row">
         <div class="container">
-            <ul>
-                <li>
-                    <h1 class="mt-4 mb-5 wow fadeInDown">{{ tagline }}</h1>
-                </li>
-                <li>
-                    <form class="form-inline" method="get" action="/search">
-                            <div class="md-form input-group mb-3 search-box" >
-
-                                <input class="form-control mr-sm-2 main-search" name="search" type="text" placeholder="Поиск по тегам" aria-label="Поиск по тегам">
-                                <div class="input-group-prepend button-group">
-                                    <button class="btn btn-md btn-info m-0 px-3" type="submit">Поиск</button>
-                                </div>
-                            </div>
-
-                    </form>
-                </li>
-                <li>
-                    <p class="mt-4 mb-5 wow fadeInDown text-left">{{ TagsList }}</p>
-                </li>
-            </ul>
+            <div class="specialties">
+                <div class="row">
+                    {% for specialization in blogTagSearch.specializations %}
+                        <div class="col-md-3"><a href="">{{ specialization.name }}</a></div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -114,6 +115,59 @@ function onStart()
 
     </section>
     <!--/Section: Best features-->
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">Новости</h2>
+    </div>
+
+    <!--Section: Best features-->
+    <section id="news">
+        <div class="row">
+            <div class="col-md-8">
+                {% set firstArticle = ArticleList.make().sort('publish|desc').published().first() %}
+                <a href="/article/{{ firstArticle.slug }}" class="article-block">
+                    <div style="background-image: url({{ firstArticle.preview_image.path }})"
+                         class="article-block__img"></div>
+                    <div class="article-block__title">
+                        <span>{{ firstArticle.title }}</span>
+                    </div>
+                    <time class="main-time visible-xs">
+                        <span class="main-time_day">{{ firstArticle.published_start.format('d') }}</span>
+                        <span class="main-time_month">{{ firstArticle.published_start.format('F') }}</span>
+                    </time>
+                    <div class="article-block__info big-article">
+                        <ul class="info-list big-article">
+
+                        </ul>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
+                {% if obArticleList.isNotEmpty() %}
+                    <ul>
+                        {% for obArticle in obArticleList %}
+                            <li class="blog-list__item first-child">
+                                <div class="blog-list__lt">
+                                    <div style="background-image: url({{ obArticle.preview_image.path }})"
+                                         class="blog-list__img"></div>
+                                </div>
+                                <div class="blog-list__rt">
+                                    <div class="blog-list__text">
+                                        <a class="blog-list__link js-blog-link js-truncate"
+                                           href="/article/{{ obArticle.slug }}">{{ obArticle.title }}</a></div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+
 
     {variable name="section3Title" label="Title" tab="Section Three" type="text"}{/variable}
     {variable name="section3Text" label="Intro Text" tab="Section Three" type="richeditor"}{/variable}

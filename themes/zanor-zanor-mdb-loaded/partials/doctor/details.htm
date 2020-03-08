@@ -4,120 +4,133 @@ description = "Blog Post"
 [commentsPost]
 url="{{ :slug }}"
 ==
+{% set image = post.featured_images.first %}
 <div class="container">
     <!--row-->
     <div class="row wow fadeIn" data-wow-delay="0.2s">
-        <div class="col-md-12">
-            <!--Card-->
-            <h2 class="card-title text-center mt-2 pb-4">
-                {{ post.title }}
-            </h2>
-            <div class="card-vertical detailed-card">
-
-                {% set image = post.featured_images.first %}
-                <!--Card image-->
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="view overlay hm-white-light z-depth-1">
-                            <img src="{{ image.path }}" class="img-fluid" alt="{{ image.description }}">
+        <div class="card-vertical detailed-card">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="view overlay hm-white-light z-depth-1">
+                                <img src="{{ image.path }}" class="img-fluid" alt="{{ image.description }}">
+                            </div>
                         </div>
-                        <div class="row">
-                            <span class="detailed-rating" id="rate-{{ post.slug }}"></span>
-                            <script>
-                                $(document).ready(function () {
-                                    $('#rate-{{ post.slug }}').starRating({
-                                        useFullStars: true,
-                                        readOnly: true,
-                                        starSize: 30,
-                                    });
-                                })
-                            </script>
-                        </div>
-                        <div class="row register-clinic-button">
-                            {% if user %}
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegisterForm">Записаться</button>
-                            {% else %}
-                                <a class="btn btn-primary" href="/signin">Записаться</a>
-                            {% endif %}
+                        <div class="col-md-8">
+                            <h3 class="mt-2 pb-1">
+                                {{ post.title }}
+                            </h3>
+                            <p class="card__label__text">
+                                <strong>{% for specialization in post.specializations %}{{ specialization.name }}; {% endfor %}</strong>
+                            </p>
+                            <p class="benefits__title"><span><i
+                                            class="fas fa-calendar-plus"></i></span> {{ post.experience }} лет опыта</p>
+                            <p class="benefits__title"><span><i
+                                            class="fas fa-language"></i></span> {{ post.languages }}</p>
+                            <p>{{ post.excerpt }}</p>
                         </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="card-body mb-3">
-                            <div class="divider-new pt-3 details-divider">
-                                <h6 class="h6-responsive indigo-text mx-4 wow fadeIn">Специальности</h6>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col-md-10 clinic-info">
+                                <a href="" class="small-card__title">{{ blogPost.parent_post.title }}</a>
+                                <div class="small-card__gtext">{{ blogPost.parent_post.excerpt }}</div>
+                                <div class="card__address">
+                                    <p class="card__address__text"><i class="fas fa-map-marker-alt"></i> {{ blogPost.parent_post.address }}</p>
+                                </div>
                             </div>
-                            {% for specialization in post.specializations %}{{ specialization.name }}<br> {% endfor %}
-
-                            <div class="divider-new pt-3 details-divider">
-                                <h6 class="h6-responsive indigo-text mx-4 wow fadeIn">Адрес</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab"
+                                       aria-controls="about"
+                                       aria-selected="true">Описание</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                       aria-controls="profile"
+                                       aria-selected="false">Отзывы</a>
+                                </li>
+                                {% if(post.featured_images|length > 2) %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                           aria-controls="contact"
+                                           aria-selected="false">Галерея</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                                    {{ post.content_html|raw }}
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    {% component 'commentsPost' %}
+                                </div>
+                                {% if(post.featured_images|length > 2) %}
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <div id="lightgallery">
+                                            {% for image in post.featured_images %}
+                                                <a href="{{ image.path }}">
+                                                    <img src="{{ image.path }}" height="150px"/>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
-                            {{ post.address }}
-
-                            <div class="divider-new pt-3 details-divider">
-                                <h6 class="h6-responsive indigo-text mx-4 wow fadeIn">Цена</h6>
-                            </div>
-                            {{ post.price|number_format(2, '.', ',') }} сом
                         </div>
                     </div>
                 </div>
-            </div>
-            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab"
-                       aria-controls="about"
-                       aria-selected="true">Описание</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                       aria-controls="home"
-                       aria-selected="false">График работы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                       aria-controls="profile"
-                       aria-selected="false">Отзывы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                       aria-controls="contact"
-                       aria-selected="false">Галерея</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#doctor_list" role="tab"
-                       aria-controls="contact"
-                       aria-selected="false">Клиника</a>
-                </li>
-
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                    {{ post.content_html|raw }}
-                </div>
-                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    {% set trans = {
-                        'monday': 'Понедельник',
-                        'tuesday': 'Вторник',
-                        'wednesday': 'Среда',
-                        'thursday': 'Четверг',
-                        'friday': 'Пятница',
-                        'saturday': 'Суббота',
-                        'sunday': 'Воскресенье',
-                    } %}
-                    <div class="list-group list-group-flush" id="list-tab" role="tablist">
+                <div class="col-md-4">
+                    <div class="row">
+                        <span class="detailed-rating" id="rate-{{ post.slug }}"></span>
+                        <script>
+                            $(document).ready(function () {
+                                $('#rate-{{ post.slug }}').starRating({
+                                    useFullStars: true,
+                                    readOnly: true,
+                                    starSize: 30,
+                                });
+                            })
+                        </script>
+                    </div>
+                    <div class="row">
+                        {% set trans = {
+                            'monday': 'Понедельник',
+                            'tuesday': 'Вторник',
+                            'wednesday': 'Среда',
+                            'thursday': 'Четверг',
+                            'friday': 'Пятница',
+                            'saturday': 'Суббота',
+                            'sunday': 'Воскресенье',
+                        } %}
                         {% for day, hours in post.openingHours.forWeek() %}
-                            <a class="list-group-item list-group-item-action {{ post.openingHours.isOpenOn(day) ? '' : 'disabled' }}" id="list-home-list" data-toggle="list"
-                               role="tab" aria-controls="home">
+                            <a class="list-group-item list-group-item-action {{ post.openingHours.isOpenOn(day) ? '' : '' }}"
+                               id="list-home-list" data-toggle="list" data-day="{{ day }}" style="padding: 5px"
+                               role="tab" aria-controls="home" onclick="Modal.open(event)">
 
-                                {{ trans[day] }}:
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ trans[day] }}:
+                                    </div>
 
-                                {% for range in hours %}
-                                    <time itemprop="opens" datetime="{{ range.start }}">{{ range.start }}</time>
-                                    -
-                                    <time itemprop="closes"
-                                          datetime="{{ range.end }}">{{ range.end }}</time>{% if not loop.last %}, {% endif %}
-                                {% else %}
-                                    закрыто
-                                {% endfor %}
+                                    <div class="col-md-6">
+                                        {% for range in hours %}
+                                            <time itemprop="opens" datetime="{{ range.start }}">{{ range.start }}</time>
+                                            -
+                                            <time itemprop="closes"
+                                                  datetime="{{ range.end }}">{{ range.end }}</time>{% if not loop.last %}, {% endif %}
+                                        {% else %}
+                                            закрыто
+                                        {% endfor %}
+                                    </div>
+                                </div>
 
                                 {% if hours.getData() %}
                                     ({{ hours.getData() }})
@@ -125,28 +138,22 @@ url="{{ :slug }}"
                             </a>
                         {% endfor %}
                     </div>
-
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    {% component 'commentsPost' %}
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <div id="lightgallery">
-                        {% for image in post.featured_images %}
-                            <a href="{{ image.path }}">
-                                <img src="{{ image.path }}" height="200px"/>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="doctor_list" role="tabpanel" aria-labelledby="doctor_list-tab">
-                    {% if blogPost.parent_post %}
-                        {% partial 'clinic/list-item' post=blogPost.parent_post %}
-                    {% endif %}
                 </div>
             </div>
-            <!--/.Card-->
         </div>
+        <!--/.row-->
     </div>
-    <!--/.row-->
 </div>
+<script>
+    var Modal = function () {
+        return {
+            open: function (event) {
+                {% if user %}
+                    $('#modalRegisterForm').modal('show');
+                {% else %}
+                    $.oc.flashMsg({text: 'Пожалуйста войдите на сайт для записи к врачу', 'class': 'error', 'interval': 2}); return false;
+                {% endif %}
+            },
+        }
+    }();
+</script>

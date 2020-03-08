@@ -100,13 +100,13 @@ class Plugin extends PluginBase
                     ],
                     'specializations' => [
                         'label'       => 'rainlab.blog::lang.blog.specializations',
-                        'icon'        => 'icon-list-ul',
+                        'icon'        => 'icon-user',
                         'url'         => Backend::url('rainlab/blog/specializations'),
                         'permissions' => ['rainlab.blog.access_specializations']
                     ],
                     'registrations' => [
                         'label'       => 'rainlab.blog::lang.blog.registrations',
-                        'icon'        => 'icon-list-ul',
+                        'icon'        => 'icon-pencil-square-o',
                         'url'         => Backend::url('rainlab/blog/registrations'),
                         'permissions' => ['rainlab.blog.access_registrations']
                     ]

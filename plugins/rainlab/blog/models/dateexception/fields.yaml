@@ -1,32 +1,32 @@
 fields:
     for_date:
-        label: 'offline.openinghours::lang.date.for'
+        label: 'rainlab.blog::lang.hours.date.for'
         mode: date
         span: auto
         type: datepicker
     note:
-        label: 'offline.openinghours::lang.common.note'
+        label: 'rainlab.blog::lang.hours.common.note'
         span: auto
         type: text
     yearly:
-        label: 'offline.openinghours::lang.date.yearly_comment'
+        label: 'rainlab.blog::lang.hours.date.yearly_comment'
         span: full
         type: checkbox
     hours:
-        label: 'offline.openinghours::lang.common.hours_special'
-        prompt: 'offline.openinghours::lang.common.add'
-        commentAbove: 'offline.openinghours::lang.exceptions.hours_comment'
+        label: 'rainlab.blog::lang.hours.common.hours_special'
+        prompt: 'rainlab.blog::lang.hours.common.add'
+        commentAbove: 'rainlab.blog::lang.hours.exceptions.hours_comment'
         span: full
         type: repeater
         form:
             fields:
                 from:
-                    label: 'offline.openinghours::lang.hours.from'
+                    label: 'rainlab.blog::lang.hours.hours.from'
                     mode: time
                     span: auto
                     type: datepicker
                 to:
-                    label: 'offline.openinghours::lang.hours.to'
+                    label: 'rainlab.blog::lang.hours.hours.to'
                     mode: time
                     span: auto
                     type: datepicker

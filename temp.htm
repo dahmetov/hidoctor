@@ -1,0 +1,156 @@
+<div class="card-vertical detailed-card">
+
+    {% set image = post.featured_images.first %}
+    <!--Card image-->
+    <div class="row">
+        <div class="col-lg-4">
+
+            <div class="row">
+
+            </div>
+            <div class="row register-clinic-button">
+                {% if user %}
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegisterForm">Записаться</button>
+                {% else %}
+                    <a class="btn btn-primary" href="/signin">Записаться</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card-body mb-3">
+                <div class="divider-new pt-3 details-divider">
+                    <h6 class="h6-responsive indigo-text mx-4 wow fadeIn">Специальности</h6>
+                </div>
+                {% for specialization in post.specializations %}{{ specialization.name }}<br> {% endfor %}
+
+                <div class="divider-new pt-3 details-divider">
+                    <h6 class="h6-responsive indigo-text mx-4 wow fadeIn">Адрес</h6>
+                </div>
+                {{ post.address }}
+
+                <div class="divider-new pt-3 details-divider">
+                    <h6 class="h6-responsive indigo-text mx-4 wow fadeIn">Цена</h6>
+                </div>
+                {{ post.price|number_format(2, '.', ',') }} сом
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab"
+           aria-controls="about"
+           aria-selected="true">Описание</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+           aria-controls="home"
+           aria-selected="false">График работы</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+           aria-controls="profile"
+           aria-selected="false">Отзывы</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+           aria-controls="contact"
+           aria-selected="false">Галерея</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#doctor_list" role="tab"
+           aria-controls="contact"
+           aria-selected="false">Клиника</a>
+    </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+        {{ post.content_html|raw }}
+    </div>
+    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <div class="list-group list-group-flush" id="list-tab" role="tablist">
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        {% component 'commentsPost' %}
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div id="lightgallery">
+            {% for image in post.featured_images %}
+                <a href="{{ image.path }}">
+                    <img src="{{ image.path }}" height="200px"/>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="doctor_list" role="tabpanel" aria-labelledby="doctor_list-tab">
+        {% if blogPost.parent_post %}
+            {% partial 'clinic/list-item' post=blogPost.parent_post %}
+        {% endif %}
+    </div>
+</div>
+<!--/.Card-->
+</div>
+
+
+
+
+
+{% set image = post.featured_images.first %}
+<div class="col-lg-4">
+    <div class="row">
+        <div class="view overlay hm-white-light z-depth-1 rounded">
+            <img data-src="{{ image.filename }}" src="{{ image.path }}" class="img-fluid"
+                 alt="{{ image.description }}">
+            <a href="{{ post.url }}">
+                <div class="mask"></div>
+            </a>
+        </div>
+    </div>
+    <div class="row register-doctor-button">
+        {% if user %}
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegisterForm-{{ post.id }}">Записаться</button>
+        {% else %}
+            <a class="btn btn-primary" href="/signin">Записаться</a>
+        {% endif %}
+    </div>
+
+</div>
+<!--/.Featured image-->
+
+<!--Post excerpt-->
+<div class="col-lg-8">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-xs-4">
+            <a href="{{ post.url }}">
+                <h2 class="post-title font-bold">{{ post.title }}</h2>
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 item-list-rating">
+            <span id="rate-{{ post.slug }}"></span>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#rate-{{ post.slug }}').starRating({
+                useFullStars: true,
+                readOnly: true,
+                starSize: 20,
+            });
+        })
+    </script>
+
+    <div class="additional">
+        <h6><span><i class="fas fa-map-marker-alt"></i></span> &nbsp;&nbsp;{{ post.address }}</h6>
+        <h6><span><i class="fas fa-user-md"></i></span> &nbsp;&nbsp;{% for specialization in post.specializations %}{{ specialization.name }}, {% endfor %}</h6>
+        <h6><span><i class="fas fa-money-bill-alt"></i></span> &nbsp;&nbsp; {{ post.price|number_format(2, '.', ',') }} сом</h6>
+        <h6><span><i class="fas fa-calendar-alt"></i></span> &nbsp;&nbsp;{{ post.openingHours.isOpen() ? "<span class='open'>Открыто сейчас</span>" : "<span class='closed'>Закрыто</span>" }}</h6>
+    </div>
+
+    <p class="my-4 dark-grey-text">{{ post.summary|raw }}</p>
+    <span id="rateMe1"></span>
+</div>

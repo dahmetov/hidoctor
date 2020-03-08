@@ -1,5 +1,5 @@
 hours:
-    label: offline.openinghours::lang.common.hours_label
+    label: rainlab.blog::lang.hours.common.hours_label
     deferredBinding: true
     view:
         list: $/rainlab/blog/models/hour/columns.yaml
@@ -8,7 +8,7 @@ hours:
         form: $/rainlab/blog/models/hour/fields.yaml
         recordsPerPage: 10
 exceptions:
-    label: offline.openinghours::lang.common.hours_special_label
+    label: rainlab.blog::lang.hours.common.hours_special_label
     deferredBinding: true
     view:
         list: $/rainlab/blog/models/dateexception/columns.yaml

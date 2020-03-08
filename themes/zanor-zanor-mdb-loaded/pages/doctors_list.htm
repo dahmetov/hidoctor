@@ -1,11 +1,12 @@
 title = "Список врачей"
-url = "/doctors/:page?"
+url = "/doctors"
 layout = "noSidebar"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "doctors"
+typeFilter = "doctor"
 postsPerPage = 10
 noPostsMessage = "Врачей не найдено"
 sortOrder = "published_at desc"
@@ -14,7 +15,20 @@ postPage = "post"
 ==
 
 {% set posts = blogPosts.posts %}
+<form class="form-inline" method="get" action="/doctors">
+    <div class="input-group mb-3 search-page-input-block">
+        <select name="specializationFilter" id="specializationFilter" class="browser-default custom-select">
+            {% for specialization in blogPosts.specializations %}
+                <option value="{{ specialization.slug }}">{{ specialization.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-md btn-primary m-0 px-3 py-2 z-depth-0 waves-effect" type="submit"
+                    id="button-addon2">Найти
+            </button>
+        </div>
+    </div>
+</form>
 
 {% partial 'doctor/list' %}
-
 {% partial 'clinic/pagination' %}
