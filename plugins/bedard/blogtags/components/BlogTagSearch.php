@@ -151,7 +151,7 @@ class BlogTagSearch extends ComponentBase
     }
 
     public function loadSpecializations() {
-        return Specialization::all();
+        return Specialization::take(20)->get();
     }
 
     /**

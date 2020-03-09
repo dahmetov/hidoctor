@@ -3,6 +3,7 @@ url = "/doctors"
 layout = "noSidebar"
 is_hidden = 0
 
+[session]
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "doctors"
@@ -10,8 +11,9 @@ typeFilter = "doctor"
 postsPerPage = 10
 noPostsMessage = "Врачей не найдено"
 sortOrder = "published_at desc"
-categoryPage = "blog"
-postPage = "post"
+postPage = "details"
+
+[blogRegistration]
 ==
 
 {% set posts = blogPosts.posts %}

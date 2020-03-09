@@ -16,6 +16,8 @@ services:
         DB_DATABASE: hidoctor
         DB_USERNAME: hidoctoruser
         DB_PASSWORD: hidoctorpassword
+      volumes:
+        - ./storage:/var/www/html/storage
 
   database:
     image: "mdillon/postgis"
