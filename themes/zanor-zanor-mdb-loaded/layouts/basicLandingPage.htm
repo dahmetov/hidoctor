@@ -49,7 +49,7 @@ function onStart()
             <div class="specialties">
                 <div class="row">
                     {% for specialization in blogTagSearch.specializations %}
-                        <div class="col-md-3"><a href="">{{ specialization.name }}</a></div>
+                        <div class="col-md-3"><a href="/doctors?specializationFilter={{ specialization.slug }}">{{ specialization.name }}</a></div>
                     {% endfor %}
                 </div>
             </div>
@@ -116,57 +116,60 @@ function onStart()
     </section>
     <!--/Section: Best features-->
 
+    {% set firstArticle = ArticleList.make().sort('publish|desc').published().first() %}
 
-    <div class="divider-new pt-5">
-        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">Новости</h2>
-    </div>
+    {% if firstArticle %}
+        <div class="divider-new pt-5">
+            <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">Новости</h2>
+        </div>
 
-    <!--Section: Best features-->
-    <section id="news">
-        <div class="row">
-            <div class="col-md-8">
-                {% set firstArticle = ArticleList.make().sort('publish|desc').published().first() %}
-                <a href="/article/{{ firstArticle.slug }}" class="article-block">
-                    <div style="background-image: url({{ firstArticle.preview_image.path }})"
-                         class="article-block__img"></div>
-                    <div class="article-block__title">
-                        <span>{{ firstArticle.title }}</span>
-                    </div>
-                    <time class="main-time visible-xs">
-                        <span class="main-time_day">{{ firstArticle.published_start.format('d') }}</span>
-                        <span class="main-time_month">{{ firstArticle.published_start.format('F') }}</span>
-                    </time>
-                    <div class="article-block__info big-article">
-                        <ul class="info-list big-article">
+        <!--Section: Best features-->
+        <section id="news">
+            <div class="row">
+                <div class="col-md-8">
 
-                        </ul>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
-                {% if obArticleList.isNotEmpty() %}
+                    <a href="/article/{{ firstArticle.slug }}" class="article-block">
+                        <div style="background-image: url({{ firstArticle.preview_image.path }})"
+                             class="article-block__img"></div>
+                        <div class="article-block__title">
+                            <span><a href="/article/{{ obArticle.slug }}">{{ firstArticle.title }}</a></span>
+                        </div>
+                        <time class="main-time visible-xs">
+                            <span class="main-time_day">{{ firstArticle.published_start.format('d') }}</span>
+                            <span class="main-time_month">{{ firstArticle.published_start.format('F') }}</span>
+                        </time>
+                        <div class="article-block__info big-article">
+                            <ul class="info-list big-article">
+
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
+                    {% if obArticleList.isNotEmpty() %}
                     <ul>
                         {% for obArticle in obArticleList %}
-                            <li class="blog-list__item first-child">
-                                <div class="blog-list__lt">
-                                    <div style="background-image: url({{ obArticle.preview_image.path }})"
-                                         class="blog-list__img"></div>
-                                </div>
-                                <div class="blog-list__rt">
-                                    <div class="blog-list__text">
-                                        <a class="blog-list__link js-blog-link js-truncate"
-                                           href="/article/{{ obArticle.slug }}">{{ obArticle.title }}</a></div>
-                                </div>
-                            </li>
+                        <li class="blog-list__item first-child">
+                            <div class="blog-list__lt">
+                                <div style="background-image: url({{ obArticle.preview_image.path }})"
+                                     class="blog-list__img"></div>
+                            </div>
+                            <div class="blog-list__rt">
+                                <div class="blog-list__text">
+                                    <a class="blog-list__link js-blog-link js-truncate"
+                                       href="/article/{{ obArticle.slug }}">{{ obArticle.title }}</a></div>
+                            </div>
+                        </li>
                         {% endfor %}
                     </ul>
 
-                {% endif %}
+                    {% endif %}
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 
     {variable name="section3Title" label="Title" tab="Section Three" type="text"}{/variable}

@@ -34,7 +34,7 @@ url="{{ :slug }}"
                     <div class="row">
                         <div class="container">
                             <div class="col-md-10 clinic-info">
-                                <a href="" class="small-card__title">{{ blogPost.parent_post.title }}</a>
+                                <a href="/details/{{ blogPost.parent_post.slug }}" class="small-card__title">{{ blogPost.parent_post.title }}</a>
                                 <div class="small-card__gtext">{{ blogPost.parent_post.excerpt }}</div>
                                 <div class="card__address">
                                     <p class="card__address__text"><i class="fas fa-map-marker-alt"></i> {{ blogPost.parent_post.address }}</p>
