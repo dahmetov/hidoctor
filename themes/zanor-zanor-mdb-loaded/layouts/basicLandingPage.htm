@@ -127,23 +127,15 @@ function onStart()
         <section id="news">
             <div class="row">
                 <div class="col-md-8">
-
-                    <a href="/article/{{ firstArticle.slug }}" class="article-block">
-                        <div style="background-image: url({{ firstArticle.preview_image.path }})"
-                             class="article-block__img"></div>
-                        <div class="article-block__title">
-                            <span><a href="/article/{{ obArticle.slug }}">{{ firstArticle.title }}</a></span>
-                        </div>
-                        <time class="main-time visible-xs">
-                            <span class="main-time_day">{{ firstArticle.published_start.format('d') }}</span>
-                            <span class="main-time_month">{{ firstArticle.published_start.format('F') }}</span>
-                        </time>
-                        <div class="article-block__info big-article">
-                            <ul class="info-list big-article">
-
-                            </ul>
-                        </div>
-                    </a>
+                    <div class="article-block">
+                        <a href="/article/{{ firstArticle.slug }}">
+                            <div style="background-image: url({{ firstArticle.preview_image.path }})"
+                                 class="article-block__img"></div>
+                            <div class="article-block__title">
+                                <a href="/article/{{ firstArticle.slug }}">{{ firstArticle.title }}</a>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
