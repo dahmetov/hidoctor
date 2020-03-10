@@ -45,6 +45,9 @@ class Post extends Model
         'title' => 'required',
         'slug' => ['required', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'unique:rainlab_blog_posts'],
         'content' => 'required',
+        'full_price.*.name' => 'required',
+        'full_price.*.price' => 'required',
+        'content' => 'required',
         'excerpt' => ''
     ];
 
@@ -63,7 +66,7 @@ class Post extends Model
     /**
      * @var array Attributes to be stored as JSON
      */
-    protected $jsonable = ['metadata'];
+    protected $jsonable = ['metadata', 'full_price'];
 
     /**
      * The attributes that should be mutated to dates.

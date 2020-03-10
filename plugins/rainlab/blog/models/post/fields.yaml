@@ -115,17 +115,28 @@ secondaryTabs:
             span: left
             type: text
 
-        price:
+        full_price:
             tab: rainlab.blog::lang.post.tab_additional
-            label: rainlab.blog::lang.post.price
-            span: left
-            type: text
-            default: 0
+            prompt: 'rainlab.blog::lang.post.add_price'
+            span: full
+            type: repeater
+            form:
+                fields:
+                    name:
+                        label: 'rainlab.blog::lang.post.price_name'
+                        span: auto
+                        type: text
+                    price:
+                        label: 'rainlab.blog::lang.post.price_value'
+                        mode: time
+                        span: auto
+                        type: number
+                        default: 0
 
         experience:
             tab: rainlab.blog::lang.post.tab_additional
             label: rainlab.blog::lang.post.experience
-            span: right
+            span: left
             type: text
             default: 0
 

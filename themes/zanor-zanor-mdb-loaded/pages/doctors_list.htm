@@ -21,7 +21,7 @@ postPage = "details"
     <div class="input-group mb-3 search-page-input-block">
         <select name="specializationFilter" id="specializationFilter" class="browser-default custom-select">
             {% for specialization in blogPosts.specializations %}
-                <option value="{{ specialization.slug }}">{{ specialization.name }}</option>
+                <option value="{{ specialization.slug }}" {{ get('specializationFilter') is same as(specialization.slug) ? 'selected' : '' }}>{{ specialization.name }}</option>
             {% endfor %}
         </select>
         <div class="input-group-append">

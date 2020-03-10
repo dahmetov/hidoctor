@@ -16,6 +16,13 @@ post_id="{{ :slug }}"
 
 [blogRegistration]
 slug = "{{ :slug }}"
+
+[shares]
+==
+
+function onEnd () {
+    $this->page->title = 'HiDoctor: '.$this->post->title;
+}
 ==
 {% set post = blogPost.post %}
 {% if post.type == 'doctor' %}

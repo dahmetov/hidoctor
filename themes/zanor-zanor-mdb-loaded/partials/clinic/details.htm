@@ -23,8 +23,18 @@ description = "Blog Post"
                             <p class="card__label__text">
                                 <strong>{% for category in post.categories %}{{ category.name }}; {% endfor %}</strong>
                             </p>
-                            <p class="benefits__title"><span><i
-                                            class="fas fa-money-bill-alt"></i></span> {{ post.price|number_format(2, '.', ',') }} сом</p>
+                            {% if post.full_price %}
+                                <div class="row benefits__title">
+                                    <div class="col-md-1">
+                                        <span><i class="fas fa-money-bill-alt"></i></span>
+                                    </div>
+                                    <div class="col-md-11" style="padding: 0;">
+                                        {% for price in post.full_price %}
+                                            {{ price.name }} - {{ price.price|number_format(2, '.', ',') }} сом <br>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
                             <p>{{ post.excerpt }}</p>
                         </div>
                     </div>
@@ -137,6 +147,9 @@ description = "Blog Post"
                                 {% endif %}
                             </a>
                         {% endfor %}
+                    </div>
+                    <div class="row">
+                        {% component 'shares' %}
                     </div>
                 </div>
             </div>

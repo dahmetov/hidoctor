@@ -80,3 +80,6 @@
 1.5.7:
     - Create registrations table
     - create_registrations_table.php
+1.5.8:
+    - Add full price column
+    - add_full_price_field.php

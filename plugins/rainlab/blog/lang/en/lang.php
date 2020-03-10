@@ -145,7 +145,10 @@ return [
         'delete_confirm' => 'Delete this post?',
         'delete_success' => 'Successfully deleted those posts.',
         'close_confirm' => 'The post is not saved.',
-        'return_to_posts' => 'Return to posts list'
+        'return_to_posts' => 'Return to posts list',
+        'price_name' => 'Title',
+        'price_value' => 'Price',
+        'add_price' => 'Add price value',
     ],
     'categories' => [
         'list_title' => 'Manage the blog categories',

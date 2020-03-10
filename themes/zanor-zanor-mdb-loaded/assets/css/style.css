@@ -8,6 +8,9 @@ body {
     background-color: transparent;
     font-weight: 400;
 }
+.main-navbar a {
+    color: #fff ;
+}
 .clinic-category-button {
     width: 100%;
 }
