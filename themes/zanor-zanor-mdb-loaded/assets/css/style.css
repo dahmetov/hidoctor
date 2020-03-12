@@ -79,7 +79,8 @@ body {
 
 .clinic-info {
     border-left: 5px solid #4285F4;
-    margin-bottom: 20px;
+    padding: 20px;
+    margin: 20px 0;
 }
 
 .small-card__abs {

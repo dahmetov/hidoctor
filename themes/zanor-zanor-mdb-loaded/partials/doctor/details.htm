@@ -28,6 +28,18 @@ url="{{ :slug }}"
                                             class="fas fa-calendar-plus"></i></span> {{ post.experience }} лет опыта</p>
                             <p class="benefits__title"><span><i
                                             class="fas fa-language"></i></span> {{ post.languages }}</p>
+                            {% if post.full_price %}
+                            <div class="row benefits__title">
+                                <div class="col-md-1">
+                                    <span><i class="fas fa-money-bill-alt"></i></span>
+                                </div>
+                                <div class="col-md-11" style="padding: 0;">
+                                    {% for price in post.full_price %}
+                                    {{ price.name }} - {{ price.price|number_format(2, '.', ',') }} сом <br>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
                             <p>{{ post.excerpt }}</p>
                         </div>
                     </div>

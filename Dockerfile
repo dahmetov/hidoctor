@@ -37,6 +37,7 @@ COPY . .
 RUN composer install
 
 RUN chown www-data -R storage
+RUN chown www-data -R themes
 COPY entrypoint.sh /usr/local/bin/docker-php-entrypoint
 
 CMD [ "/usr/local/bin/apache2-foreground" ]

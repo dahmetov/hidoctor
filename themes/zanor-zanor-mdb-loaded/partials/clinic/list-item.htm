@@ -12,30 +12,32 @@ description = "List of clinics"
                 </div>
                 <div class="row register-clinic-button">
                     {% if user %}
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegisterForm">Записаться</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegisterForm">Записаться</button>
                     {% else %}
-                        <a class="btn btn-primary" href="" onclick="showError(event)">Записаться</a>
-                        <script>
-                            function showError(event) {
-                                event.preventDefault()
-                                $.oc.flashMsg({text: 'Пожалуйста войдите на сайт для записи в клинику', 'class': 'error', 'interval': 2}); return false;
-                            }
-                        </script>
+                    <a class="btn btn-primary" href="" onclick="showError(event)">Записаться</a>
+                    <script>
+                        function showError(event) {
+                            event.preventDefault()
+                            $.oc.flashMsg({text: 'Пожалуйста войдите на сайт для записи в клинику', 'class': 'error', 'interval': 2}); return false;
+                        }
+                    </script>
                     {% endif %}
                 </div>
             </div>
             <div class="col-md-8">
-                <h3 class="mt-2 pb-1">
-                    <a href="{{ post.url }}">{{ post.title }}</a>
-                </h3>
-                <p class="card__label__text">
-                    <strong>{% for category in post.categories %}{{ category.name }}; {% endfor %}</strong>
-                </p>
-                <div class="card__address">
+                <a href="{{ post.url }}">
+                    <h3 class="mt-2 pb-1">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </h3>
+                    <p class="card__label__text">
+                        <strong>{% for category in post.categories %}{{ category.name }}; {% endfor %}</strong>
+                    </p>
+                    <div class="card__address">
 
-                    <p class="card__address__text"><i class="fas fa-map-marker-alt"></i> {{ post.address }}</p>
-                </div>
-                <p class="benefits__title_item">{{ post.excerpt }}</p>
+                        <p class="card__address__text"><i class="fas fa-map-marker-alt"></i> {{ post.address }}</p>
+                    </div>
+                    <p class="benefits__title_item">{{ post.excerpt }}</p>
+                </a>
             </div>
         </div>
     </div>
