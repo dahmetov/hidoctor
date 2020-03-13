@@ -30,10 +30,10 @@ url="{{ :slug }}"
                                             class="fas fa-language"></i></span> {{ post.languages }}</p>
                             {% if post.full_price %}
                             <div class="row benefits__title">
-                                <div class="col-md-1">
+                                <div class="col-xs-1 col-md-1">
                                     <span><i class="fas fa-money-bill-alt"></i></span>
                                 </div>
-                                <div class="col-md-11" style="padding: 0;">
+                                <div class="col-xs-11 col-md-11 full-price" style="padding: 0;">
                                     {% for price in post.full_price %}
                                     {{ price.name }} - {{ price.price|number_format(2, '.', ',') }} сом <br>
                                     {% endfor %}
@@ -43,6 +43,7 @@ url="{{ :slug }}"
                             <p>{{ post.excerpt }}</p>
                         </div>
                     </div>
+                    {% if blogPost.parent_post.title %}
                     <div class="row">
                         <div class="container">
                             <div class="col-md-10 clinic-info">
@@ -54,6 +55,7 @@ url="{{ :slug }}"
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -82,7 +84,7 @@ url="{{ :slug }}"
                                     {{ post.content_html|raw }}
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    {% component 'commentsPost' %}
+                                    {% partial 'commentForm' post=post mainMessage="Поставьте оценку данному врачу" %}
                                 </div>
                                 {% if(post.featured_images|length > 2) %}
                                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -101,16 +103,11 @@ url="{{ :slug }}"
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                        <span class="detailed-rating" id="rate-{{ post.slug }}"></span>
-                        <script>
-                            $(document).ready(function () {
-                                $('#rate-{{ post.slug }}').starRating({
-                                    useFullStars: true,
-                                    readOnly: true,
-                                    starSize: 30,
-                                });
-                            })
-                        </script>
+                        <span class="stars detailed-rating" style="color: rgb(243, 156, 18);">
+                            {% for star in 1..5 %}
+                                <i class="{% if star > post.avg_rating %}far {% else %}fas {% endif %}fa-star" aria-hidden="true"></i>
+                            {% endfor %}
+                        </span>
                     </div>
                     <div class="row">
                         {% set trans = {

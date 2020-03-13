@@ -18,6 +18,7 @@ use Cms\Classes\Theme;
 use Cms\Classes\Controller;
 use RainLab\Blog\Classes\TagProcessor;
 use ValidationException;
+use VojtaSvoboda\Reviews\Models\Review;
 
 /**
  * Class Post
@@ -112,7 +113,8 @@ class Post extends Model
 
     public $hasMany = [
         'hours' => Hour::class,
-        'exceptions' => DateException::class
+        'exceptions' => DateException::class,
+        'reviews' => Review::class
     ];
 
     public $attachMany = [

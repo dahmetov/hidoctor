@@ -25,10 +25,10 @@ description = "Blog Post"
                             </p>
                             {% if post.full_price %}
                                 <div class="row benefits__title">
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 col-xs-1">
                                         <span><i class="fas fa-money-bill-alt"></i></span>
                                     </div>
-                                    <div class="col-md-11" style="padding: 0;">
+                                    <div class="col-md-11 col-xs-11" style="padding: 0;">
                                         {% for price in post.full_price %}
                                             {{ price.name }} - {{ price.price|number_format(2, '.', ',') }} сом <br>
                                         {% endfor %}
@@ -72,7 +72,7 @@ description = "Blog Post"
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="row">
-                                        {% component 'commentsPost' %}
+                                        {% partial 'commentForm' post=post, mainMessage="Поставьте оценку данной клинке" %}
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="doctors" role="tabpanel" aria-labelledby="doctors-tab">
@@ -99,16 +99,11 @@ description = "Blog Post"
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                        <span class="detailed-rating" id="rate-{{ post.slug }}"></span>
-                        <script>
-                            $(document).ready(function () {
-                                $('#rate-{{ post.slug }}').starRating({
-                                    useFullStars: true,
-                                    readOnly: true,
-                                    starSize: 30,
-                                });
-                            })
-                        </script>
+                        <span class="stars detailed-rating" style="color: rgb(243, 156, 18);">
+                            {% for star in 1..5 %}
+                                <i class="{% if star > post.avg_rating %}far {% else %}fas {% endif %}fa-star" aria-hidden="true"></i>
+                            {% endfor %}
+                        </span>
                     </div>
                     <div class="row">
                         {% set trans = {

@@ -1,11 +1,15 @@
 <?php namespace RainLab\Blog\Components;
 
+use DB;
+use Validator;
 use Event;
+use Auth;
 use BackendAuth;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use RainLab\Blog\Models\Post as BlogPost;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use VojtaSvoboda\Reviews\Models\Review;
 
 class Post extends ComponentBase
 {
@@ -100,8 +104,12 @@ class Post extends ComponentBase
             $post = $post->isPublished();
         }
 
+        $post = $post->with('reviews', 'reviews.user');
+
         try {
             $post = $post->firstOrFail();
+            debug($post->reviews);
+            $post->avg_rating = $post->reviews->avg('rating');
         } catch (ModelNotFoundException $ex) {
             $this->setStatusCode(404);
             return $this->controller->run('404');
@@ -186,5 +194,47 @@ class Post extends ComponentBase
         $backendUser = BackendAuth::getUser();
 
         return $backendUser && $backendUser->hasAccess('rainlab.blog.access_posts');
+    }
+
+    public function onSaveReviewButton()
+    {
+        $formValidation = [
+            'author' => 'alpha_dash|min:2|max:25',
+            'email' => 'email',
+            'rating' => 'required',
+            'content' => 'required|min:2|max:500'
+        ];
+
+        $validator = Validator::make(post(), $formValidation);
+
+        // check Validator
+        if ($validator->fails()) {
+            return [
+                'message' => $validator->messages()
+            ];
+        }
+
+        return $this->saveComment();
+
+    }
+
+    /**
+     * @return array
+     */
+    public function saveComment()
+    {
+        $model = new Review();
+        $model->content = strip_tags(post('content'));
+        $model->post_id = post('post_id');
+        $model->rating = post('rating');
+
+        if (Auth::check()) {
+            $model->user_id = Auth::getUser()->id;
+        }
+        if ($model->save()) {
+            return [
+                'model' => $model
+            ];
+        }
     }
 }

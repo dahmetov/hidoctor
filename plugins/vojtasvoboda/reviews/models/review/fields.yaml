@@ -1,0 +1,30 @@
+fields:
+    user:
+        label: Пользователь
+        span: left
+        type: relation
+        nameFrom: login
+    post:
+        label: Пост
+        span: right
+        type: relation
+        nameFrom: title
+    rating:
+        label: Рейтинг
+        type: starrating
+tabs:
+    fields:
+        title:
+            tab: Общее
+            label: Title
+        content:
+            tab: Общее
+            label: Текст
+            type: textarea
+            size: medium
+            span: full
+        approved:
+            tab: Общее
+            label: Одобрено
+            span: full
+            type: checkbox

@@ -1,0 +1,40 @@
+columns:
+    id:
+        label: ID
+        searchable: true
+        sortable: true
+    user:
+        label: Пользователь
+        relation: user
+        select: email
+        searchable: true
+        sortable: false
+    post:
+        label: Пост
+        relation: post
+        select: title
+        searchable: true
+        sortable: false
+    rating:
+        label: Rating
+        sortable: true
+    title:
+        label: Заголовок
+        type: text
+        searchable: true
+        sortable: true
+    content:
+        label: Текст
+        type: text
+        searchable: true
+        sortable: true
+    approved:
+        label: Одобрено
+        sortable: true
+        type: switch
+    created_at:
+        label: Дата создания
+        type: datetime
+        searchable: true
+        sortable: true
+        format: d.m.Y H:i:s

@@ -27,7 +27,7 @@ description = "List of doctors"
             <div class="col-md-8">
                 <a href="{{ post.url }}">
                     <h3 class="mt-2 pb-1">
-                        <a href="{{ post.url }}">{{ post.title }}</a>
+                        {{ post.title }}
                     </h3>
                     <p class="card__label__text">
                         <strong>{% for specialization in post.specializations %}{{ specialization.name }}; {% endfor %}</strong>
