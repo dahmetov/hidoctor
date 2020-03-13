@@ -23,7 +23,7 @@ services:
     image: "mdillon/postgis"
     container_name: "hi_doctor"
     ports:
-      - "5434:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=hidoctoruser
       - POSTGRES_PASSWORD=hidoctorpassword
