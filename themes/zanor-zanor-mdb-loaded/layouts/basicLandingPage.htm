@@ -81,13 +81,13 @@ function onStart()
     <!--Section: Best features-->
     <section id="best-features">
 
-        <div class="row pt-3">
+        <div class="row pt-3 justify-content-center text-center">
             {repeater tab="Section Two" name="Cards" prompt="Add another Card"}
             {variable name="cardImg" label="Card Image" type="mediafinder" mode="image"}{/variable}
             {variable name="cardTitle" label="Title" type="text"}{/variable}
             {variable name="cardText" label="Card Text" type="text"}{/variable}
             {variable name="cardURL" label="URL" type="text"}{/variable}
-            <div class="col-lg-3 mb-r">
+            <div class="col-lg-4 mb-r">
                 {% if fields.cardURL != '' %}<a href="{{ fields.cardURL }}">{% endif %}
                     <!--Card-->
                     <div class="card hoverable wow fadeIn">
@@ -95,15 +95,15 @@ function onStart()
                         <!--Card image-->
                         <img class="img-fluid"
                              src="{% if fields.cardImg == '' %}https://mdbootstrap.com/img/Photos/Others/images/72.jpg{% else %}{{ fields.cardImg|media }}{% endif %}"
-                             alt="Card image cap">
+                             alt="Card image cap" style="object-fit: contain">
 
                         <!--Card content-->
                         <div class="card-body">
                             <!--Title-->
-                            <h4 class="card-title text-center">{{ fields.cardTitle }}</h4>
+                            <h4 class="card-title text-center advantage-title">{{ fields.cardTitle }}</h4>
                             <hr>
                             <!--Text-->
-                            <p class="card-text">{{ fields.cardText }}</p>
+                            <p class="card-text advantage-text">{{ fields.cardText }}</p>
                         </div>
 
                     </div>

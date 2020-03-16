@@ -199,6 +199,20 @@ h4 {
     color: #fff;
 }
 
+.advantage-title {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #828282;
+}
+
+.advantage-text {
+    font-size: 16px !important;
+    line-height: 20px !important;
+    color: #828282;
+}
+
 @media only screen and (max-width: 667px) {
     .display-3 {
         font-size: 3rem;

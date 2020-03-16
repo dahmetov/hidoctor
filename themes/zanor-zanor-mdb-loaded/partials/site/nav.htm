@@ -6,6 +6,8 @@ description = "Nav with Dropdown"
 code = "mainmenu"
 categoryPage = "clinics_list"
 [account]
+
+[linkList]
 ==
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg lighten-5">
@@ -17,6 +19,7 @@ categoryPage = "clinics_list"
         </a>
 
         <ul class="navbar-nav ml-auto nav-flex-icons">
+            {% component 'linkList' %}
             {% if user %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"

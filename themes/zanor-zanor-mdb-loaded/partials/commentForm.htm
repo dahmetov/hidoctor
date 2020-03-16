@@ -98,6 +98,7 @@
                     },
                     success: function (data) {
                         if (data.model.content) {
+                            $.oc.flashMsg({text: 'Ваш отзыв учтен', 'class': 'success', 'interval': 2});
                             window.location.reload()
                         }
                     }

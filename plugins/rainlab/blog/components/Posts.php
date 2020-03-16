@@ -241,8 +241,6 @@ class Posts extends ComponentBase
         $specialization = $this->specialization ? $this->specialization->id : null;
         $type = $this->type ? $this->type : null;
 
-        debug($specialization);
-
         /*
          * List all the posts, eager load their categories
          */
@@ -290,6 +288,7 @@ class Posts extends ComponentBase
          * Add a "url" helper attribute for linking to each post and category
          */
         $posts->each(function($post) {
+            $post->avg_rating = $post->reviews->avg('rating');
             $post->setUrl($this->postPage, $this->controller);
             $post->categories->each(function($category) {
                 $category->setUrl($this->categoryPage, $this->controller);

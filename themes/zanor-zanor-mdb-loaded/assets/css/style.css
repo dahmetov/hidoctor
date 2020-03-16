@@ -326,6 +326,13 @@ footer.page-footer .footer-copyright {
 
 }
 
+.results-not-found {
+    font-size: 40px;
+    color: #e6e9ec;
+    margin: 10% 0;
+    text-align: center;
+}
+
 #comment-text {
     padding: 5px;
 }

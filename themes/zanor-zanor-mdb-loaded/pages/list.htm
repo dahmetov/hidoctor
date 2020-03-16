@@ -29,7 +29,13 @@ function onEnd () {
 {% if type == 'doctor' %}
     {% partial 'doctor/list' %}
     {% partial 'doctor/pagination' %}
-{% else %}
+{% elseif type == 'clinic' %}
     {% partial 'clinic/list' %}
     {% partial 'clinic/pagination' %}
+{% elseif type == 'pharmacy' %}
+    {% partial 'pharmacy/list' %}
+    {% partial 'pharmacy/pagination' %}
+{% elseif type == 'laboratory' %}
+    {% partial 'laboratory/list' %}
+    {% partial 'laboratory/pagination' %}
 {% endif %}

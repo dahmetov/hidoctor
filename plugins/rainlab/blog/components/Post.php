@@ -108,7 +108,6 @@ class Post extends ComponentBase
 
         try {
             $post = $post->firstOrFail();
-            debug($post->reviews);
             $post->avg_rating = $post->reviews->avg('rating');
         } catch (ModelNotFoundException $ex) {
             $this->setStatusCode(404);

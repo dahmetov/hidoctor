@@ -43,16 +43,11 @@ description = "List of doctors"
     </div>
     <div class="col-md-2">
         <div class="row">
-            <span id="rate-{{ post.slug }}"></span>
-            <script>
-                $(document).ready(function() {
-                    $('#rate-{{ post.slug }}').starRating({
-                        useFullStars: true,
-                        readOnly: true,
-                        starSize: 20,
-                    });
-                })
-            </script>
+            <span class="stars detailed-rating" style="color: #03a9f4;">
+                {% for star in 1..5 %}
+                    <i class="{% if star > post.avg_rating %}far {% else %}fas {% endif %}fa-star" aria-hidden="true"></i>
+                {% endfor %}
+            </span>
         </div>
     </div>
 </div>

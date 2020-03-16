@@ -1,0 +1,12 @@
+description = "Список лабараторий"
+
+[viewBag]
+==
+{% if posts is not empty %}
+    {% for post in posts %}
+        {% partial 'laboratory/list-item' post=post %}
+        {% partial 'registerModal' post=post %}
+    {% endfor %}
+{% else %}
+    <p class="results-not-found">Результатов не найдено</p>
+{% endif %}

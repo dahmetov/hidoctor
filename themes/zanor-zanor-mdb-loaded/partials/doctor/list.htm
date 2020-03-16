@@ -2,7 +2,11 @@ description = "List of doctors"
 
 [viewBag]
 ==
-{% for post in posts %}
-    {% partial 'doctor/list-item' post=post %}
-    {% partial 'registerModal' post=post %}
-{% endfor %}
+{% if posts is not empty %}
+    {% for post in posts %}
+        {% partial 'doctor/list-item' post=post %}
+        {% partial 'registerModal' post=post %}
+    {% endfor %}
+{% else %}
+    <p class="results-not-found">Результатов не найдено</p>
+{% endif %}

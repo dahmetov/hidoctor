@@ -27,8 +27,12 @@ function onEnd () {
 {% set post = blogPost.post %}
 {% if post.type == 'doctor' %}
     {% partial 'doctor/details' %}
-{% else %}
+{% elseif post.type == 'clinic' %}
     {% partial 'clinic/details' %}
+{% elseif post.type == 'pharmacy' %}
+    {% partial 'pharmacy/details' %}
+{% elseif post.type == 'laboratory' %}
+    {% partial 'laboratory/details' %}
 {% endif %}
 <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-day=""
      aria-hidden="true">
